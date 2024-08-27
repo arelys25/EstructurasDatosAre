@@ -1,4 +1,6 @@
 package pruebas;
+import clases.Vehiculo;
+
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
@@ -7,10 +9,14 @@ import java.util.Scanner;
 *
 * */
 public class TestVehiculo {
+
+    private static Scanner sc = new Scanner(System.in);
+
+    private static Vehiculo v; // valor por default = null
+
     public static void main(String[] args) {
         // hacer el menu ciclado
         int opcion =0;
-        Scanner sc = new Scanner(System.in);
         System.out.println("MUÑOZ TAPIA ARELY SINAI\n");
 
         do {
@@ -66,11 +72,33 @@ public class TestVehiculo {
     // METODOS PARA EL SWITCH QUE CONTENDRAN LAS FUNCIONES
     // static porque el Main es static y void porque no va a retornar ningún valor
     public static void crearObjetoMatricula(){
+        if (v != null){
+            System.out.println("Referencia no está vacía, usted ya creó el objeto.\n");
+        } else {
+            System.out.println("Introduce la matrícula");
+            String matricula = sc.nextLine();
 
+            v = new Vehiculo(matricula); // crear el objeto
+            System.out.println("Objeto creado\n");
+        }
     }
 
     public static void crearObjeto3Datos(){
+        if (v != null){
+            System.out.println("Referencia no está vacía, usted ya creó el objeto.\n");
+        } else {
+            System.out.println("Introduce la matrícula:\n");
+            String matricula = sc.next();
 
+            System.out.println("Introduce la marca:\n");
+            String marca = sc.next();
+
+            System.out.println("Introduce el año:\n");
+            String año = sc.next();
+
+            v = new Vehiculo(matricula,marca,año); // crear el objeto
+            System.out.println("Objeto creado\n");
+        }
     }
 
     public static void crearObjeto5Datos(){
@@ -78,18 +106,79 @@ public class TestVehiculo {
     }
 
     public static void mostrarDatos() {
+        if (v == null){
+            System.out.println("Error. Aún no se ha creado el objeto vehículo\n");
+        } else {
+            System.out.println("Introduce la matrícula a buscar:\n");
+            String mat = sc.next();
 
+            Vehiculo auxiliar = new Vehiculo(mat);
+            if (auxiliar.equals(v)){ // comparar el dato ingresado con el usuario con el v original
+                System.out.println("Los datos del vehículo son:\n");
+                System.out.println(v+"\n");
+            } else {
+                System.out.println("Error. Las matrículas no coinciden.\n");
+            }
+        }
     }
 
     public static void modificarDatos(){
+        if (v == null){
+            System.out.println("Error. Aún no se ha creado el objeto vehículo\n");
+        } else {
+            System.out.println("Introduce la matrícula a buscar:\n");
+            String mat = sc.next();
 
+            Vehiculo auxiliar = new Vehiculo(mat);
+            if (auxiliar.equals(v)){ // comparar el dato ingresado con el usuario con el v original
+                System.out.println("Los datos actuales del vehículo son:\n");
+                System.out.println(v+"\n");
+
+                System.out.println("Introduce los nuevos datos:\n");
+                // mostrar datos originales y pedir los nuevos
+
+                // alsijfoiahfioa
+            } else {
+                System.out.println("Error. Las matrículas no coinciden.\n");
+            }
+        }
     }
 
     public static void borrarDatos() {
+        if (v == null){
+            System.out.println("El objeto ya ha sido destruido o borrado.\n");
+        } else {
+            System.out.println("Introduce la matrícula a buscar:\n");
+            String mat = sc.next();
 
+            Vehiculo auxiliar = new Vehiculo(mat);
+            if (auxiliar.equals(v)){ // comparar el dato ingresado con el usuario con el v original
+                v = null;
+                System.out.println("Los datos han sido borrados con éxito.\n");
+
+                System.out.println(v+"\n");
+            } else {
+                System.out.println("Error. Las matrículas no coinciden.\n");
+            }
+        }
     }
 
     public static void destruirObjeto(){
+        if (v == null){
+            System.out.println("El objeto ya ha sido destruido.\n");
+        } else {
+            System.out.println("Introduce la matrícula a buscar:\n");
+            String mat = sc.next();
 
+            Vehiculo auxiliar = new Vehiculo(mat);
+            if (auxiliar.equals(v)){ // comparar el dato ingresado con el usuario con el v original
+                v = null;
+                System.out.println("El objeto ya ha sido destruido.\n");
+
+                System.out.println(v+"\n");
+            } else {
+                System.out.println("Error. Las matrículas no coinciden.\n");
+            }
+        }
     }
 }
