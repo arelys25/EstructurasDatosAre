@@ -102,7 +102,27 @@ public class TestVehiculo {
     }
 
     public static void crearObjeto5Datos(){
+        if (v != null){
+            System.out.println("Referencia no está vacía, usted ya creó el objeto.\n");
+        } else {
+            System.out.println("Introduce la matrícula:\n");
+            String matricula = sc.next();
 
+            System.out.println("Introduce la marca:\n");
+            String marca = sc.next();
+
+            System.out.println("Introduce el año:\n");
+            String modelo = sc.next();
+
+            System.out.println("Introduce el año:\n");
+            String año = sc.next();
+
+            System.out.println("Introduce el año:\n");
+            String color = sc.next();
+
+            v = new Vehiculo(matricula,marca,modelo,año,color); // crear el objeto
+            System.out.println("Objeto creado\n");
+        }
     }
 
     public static void mostrarDatos() {
