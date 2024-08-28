@@ -1,7 +1,6 @@
 package pruebas;
 import clases.Vehiculo;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 /*
