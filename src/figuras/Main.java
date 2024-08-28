@@ -1,6 +1,11 @@
 package figuras;
 // Arely Sinai Muñoz Tapia
 
+/*
+* @author Muñoz Tapia Arely Sinai
+*
+* */
+
 // importar escaner para extraer datos a ingresar
 import java.util.Scanner;
 
