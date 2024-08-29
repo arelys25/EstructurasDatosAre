@@ -8,7 +8,7 @@ public final class Vehiculo {
     private String matricula;
     private String marca;
     private String modelo;
-    private String año;
+    private String anio;
     private String color;
 
 
@@ -18,18 +18,18 @@ public final class Vehiculo {
         this.matricula = matricula;
     }
 
-    public Vehiculo(String matricula, String marca, String año) {
+    public Vehiculo(String matricula, String marca, String anio) {
         // this.matricula = matricula;
         this(matricula); // utilizar el primer contructor mandando a llamar la función
         this.marca = marca;
-        this.modelo = año;
+        this.modelo = anio;
     }
 
-    public Vehiculo(String matricula, String marca, String modelo, String año, String color) {
+    public Vehiculo(String matricula, String marca,String anio, String modelo,  String color) {
         //this.matricula = matricula;
         //this.marca = marca;
         //this.año = año;
-        this(matricula, marca, año);
+        this(matricula, marca, anio);
         this.modelo = modelo;
         this.color = color;
     }
@@ -58,12 +58,12 @@ public final class Vehiculo {
         this.modelo = modelo;
     }
 
-    public String getAño() {
-        return año;
+    public String getAnio() {
+        return anio;
     }
 
-    public void setAño(String año) {
-        this.año = año;
+    public void setAnio(String anio) {
+        this.anio = anio;
     }
 
     public String getColor() {
@@ -91,13 +91,14 @@ public final class Vehiculo {
 
     // TOSTRING
 
+
     @Override
     public String toString() {
         return "Vehiculo{" +
                 "matricula='" + matricula + '\'' +
                 ", marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
-                ", año='" + año + '\'' +
+                ", anio='" + anio + '\'' +
                 ", color='" + color + '\'' +
                 '}';
     }

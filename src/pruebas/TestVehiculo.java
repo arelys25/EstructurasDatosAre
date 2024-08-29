@@ -12,6 +12,7 @@ public class TestVehiculo {
     private static Scanner sc = new Scanner(System.in);
 
     private static Vehiculo v; // valor por default = null
+    private static int cont;
 
     public static void main(String[] args) {
         // hacer el menu ciclado
@@ -71,36 +72,54 @@ public class TestVehiculo {
     // METODOS PARA EL SWITCH QUE CONTENDRAN LAS FUNCIONES
     // static porque el Main es static y void porque no va a retornar ningún valor
     public static void crearObjetoMatricula(){
+        cont = 1;
         if (v != null){
             System.out.println("Referencia no está vacía, usted ya creó el objeto.\n");
         } else {
             System.out.println("Introduce la matrícula");
-            String matricula = sc.nextLine();
+            String matricula = sc.next();
+
+            if(matricula != null){
 
             v = new Vehiculo(matricula); // crear el objeto
             System.out.println("Objeto creado\n");
+
+            } else{
+                System.out.println("la matricula es nula");
+            }
         }
     }
 
     public static void crearObjeto3Datos(){
+        cont = 3;
         if (v != null){
             System.out.println("Referencia no está vacía, usted ya creó el objeto.\n");
         } else {
             System.out.println("Introduce la matrícula:\n");
             String matricula = sc.next();
 
+
+
             System.out.println("Introduce la marca:\n");
             String marca = sc.next();
 
             System.out.println("Introduce el año:\n");
-            String año = sc.next();
-
-            v = new Vehiculo(matricula,marca,año); // crear el objeto
-            System.out.println("Objeto creado\n");
+            String anio = sc.next();
+            int anioInt = 0;
+            try {
+                anioInt = Integer.parseInt(anio);
+            } catch (NumberFormatException e) {
+                System.out.println("Error: el año no es un numero valido.");
+            }
+            if(matricula != null && anioInt > 0   ) {
+                v = new Vehiculo(matricula, marca, anio); // crear el objeto
+                System.out.println("Objeto creado\n");
+            }
         }
     }
 
     public static void crearObjeto5Datos(){
+        cont = 5;
         if (v != null){
             System.out.println("Referencia no está vacía, usted ya creó el objeto.\n");
         } else {
@@ -111,16 +130,25 @@ public class TestVehiculo {
             String marca = sc.next();
 
             System.out.println("Introduce el año:\n");
+            String anio = sc.next();
+            int anioInt = 0;
+            try {
+                anioInt = Integer.parseInt(anio);
+            } catch (NumberFormatException e) {
+                System.out.println("Error: el año no es un numero valido.");
+            }
+
+            System.out.println("Introduce el modelo:\n");
             String modelo = sc.next();
 
-            System.out.println("Introduce el año:\n");
-            String año = sc.next();
 
-            System.out.println("Introduce el año:\n");
+            System.out.println("Introduce el color:\n");
             String color = sc.next();
 
-            v = new Vehiculo(matricula,marca,modelo,año,color); // crear el objeto
-            System.out.println("Objeto creado\n");
+            if(matricula != null && anioInt > 0   ) {
+                v = new Vehiculo(matricula, marca, anio, modelo, color); // crear el objeto
+                System.out.println("Objeto creado\n");
+            }
         }
     }
 
@@ -155,8 +183,80 @@ public class TestVehiculo {
 
                 System.out.println("Introduce los nuevos datos:\n");
                 // mostrar datos originales y pedir los nuevos
+                switch (cont) {
+                    case 1:
+                        System.out.println("Ingrese matrícula nueva:\n ");
+                        sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                        v.setMatricula(sc.nextLine());
+                        break;
+                    case 3:
+                        System.out.println("¿Qué dato desea modificar?\n");
+                        System.out.println("1 - Matrícula\n2 - Marca\n3 - año\n");
+                        int opc = sc.nextInt();
 
-                // alsijfoiahfioa
+                        switch (opc) {
+                            case 1:
+                                System.out.println("Ingrese matrícula nueva:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setMatricula(sc.nextLine());
+                                break;
+                            case 2:
+                                System.out.println("Ingrese marca nueva:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setMarca(sc.nextLine());
+                                break;
+
+                            case 3:
+                                System.out.println("Ingrese nuevo año:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setAnio(sc.nextLine());
+                                break;
+
+                        }
+
+                    break;
+
+                    case 5:
+                        System.out.println("¿Qué dato desea modificar?\n");
+                        System.out.println("1 - Matrícula\n2 - Marca\n3 - Año\n4 - Modelo\n5 - Color\n");
+                        int opc2 = sc.nextInt();
+
+                        switch (opc2) {
+                            case 1:
+                                System.out.println("Ingrese matrícula nueva:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setMatricula(sc.nextLine());
+                                break;
+                            case 2:
+                                System.out.println("Ingrese marca nueva:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setMarca(sc.nextLine());
+                                break;
+
+                            case 3:
+                                System.out.println("Ingrese año nueva:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setAnio(sc.nextLine());
+                                break;
+
+                            case 4:
+                                System.out.println("Ingrese modelo nuevo:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setModelo(sc.nextLine());
+                                break;
+
+                            case 5:
+                                System.out.println("Ingrese color nuevo:\n ");
+                                sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
+                                v.setColor(sc.nextLine());
+                                break;
+
+                        }
+                    break;
+                }
+
+                System.out.println("Datos modificados correctamente.");
+
             } else {
                 System.out.println("Error. Las matrículas no coinciden.\n");
             }
