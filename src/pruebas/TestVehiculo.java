@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 /*
 * @author MUÑOZ TAPIA ARELY SINAI
+* @author HERNANDEZ ZAMBRANO AXEL JOSUE
 *
 * */
 public class TestVehiculo {
@@ -17,7 +18,7 @@ public class TestVehiculo {
     public static void main(String[] args) {
         // hacer el menu ciclado
         int opcion =0;
-        System.out.println("MUÑOZ TAPIA ARELY SINAI\n");
+        System.out.println("MUÑOZ TAPIA ARELY SINAI\nAxel josue Herandez Zambrano\n");
 
         do {
             System.out.println("0 - Salir");
@@ -66,7 +67,7 @@ public class TestVehiculo {
 
         }while (opcion != 0);
 
-        System.out.println("\nMUÑOZ TAPIA ARELY SINAI");
+        System.out.println("\nMUÑOZ TAPIA ARELY SINAI\nAxel Josue Hernandez Zambrano\n");
     }
 
     // METODOS PARA EL SWITCH QUE CONTENDRAN LAS FUNCIONES
