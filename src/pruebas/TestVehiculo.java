@@ -18,7 +18,7 @@ public class TestVehiculo {
     public static void main(String[] args) {
         // hacer el menu ciclado
         int opcion =0;
-        System.out.println("MUÑOZ TAPIA ARELY SINAI\nAxel josue Herandez Zambrano\n");
+        System.out.println("MUÑOZ TAPIA ARELY SINAI\nHERNANDEZ ZAMBRANO AXEL JOSUE\n");
 
         do {
             System.out.println("0 - Salir");
@@ -67,7 +67,7 @@ public class TestVehiculo {
 
         }while (opcion != 0);
 
-        System.out.println("\nMUÑOZ TAPIA ARELY SINAI\nAxel Josue Hernandez Zambrano\n");
+        System.out.println("\nMUÑOZ TAPIA ARELY SINAI\nHERNANDEZ ZAMBRANO AXEL JOSUE\n");
     }
 
     // METODOS PARA EL SWITCH QUE CONTENDRAN LAS FUNCIONES
@@ -251,7 +251,6 @@ public class TestVehiculo {
                                 sc.nextLine(); // se tiene que añadir otro scanner para que se haga el espacio en el que el usuario pueda responder
                                 v.setColor(sc.nextLine());
                                 break;
-
                         }
                     break;
                 }

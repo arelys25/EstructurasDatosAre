@@ -22,7 +22,7 @@ public final class Vehiculo {
         // this.matricula = matricula;
         this(matricula); // utilizar el primer contructor mandando a llamar la función
         this.marca = marca;
-        this.modelo = anio;
+        this.anio = anio;
     }
 
     public Vehiculo(String matricula, String marca,String anio, String modelo,  String color) {
