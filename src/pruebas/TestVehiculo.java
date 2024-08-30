@@ -23,12 +23,12 @@ public class TestVehiculo {
         do {
             System.out.println("0 - Salir");
             System.out.println("1 - Crear objeto con matrícula");
-            System.out.println("2 - Crear objeto con 3 datos");
-            System.out.println("3 - Crear objeto con 5 datos");
+            System.out.println("2 - Crear objeto con 3 datos (Matrícula, marca y año)");
+            System.out.println("3 - Crear objeto con 5 datos (Matrícula, marca, año, modelo y color)");
             System.out.println("4 - Mostrar datos del vehículo");
             System.out.println("5 - Modificar datos el vehículo");
             System.out.println("6 - Borrar datos del vehículo");
-            System.out.println("7 - Destruir objeto");
+            System.out.println("7 - Destruir objeto\n");
 
             System.out.println("Seleccione una oción:\n");
             opcion = sc.nextInt();
@@ -255,7 +255,8 @@ public class TestVehiculo {
                     break;
                 }
 
-                System.out.println("Datos modificados correctamente.");
+                System.out.println("\nDatos modificados correctamente.\n");
+                System.out.println(v+"\n");
 
             } else {
                 System.out.println("Error. Las matrículas no coinciden.\n");
@@ -275,7 +276,7 @@ public class TestVehiculo {
                 v = null;
                 System.out.println("Los datos han sido borrados con éxito.\n");
 
-                System.out.println(v+"\n");
+                System.out.println("Objeto: "+v+"\n");
             } else {
                 System.out.println("Error. Las matrículas no coinciden.\n");
             }
@@ -294,7 +295,7 @@ public class TestVehiculo {
                 v = null;
                 System.out.println("El objeto ya ha sido destruido.\n");
 
-                System.out.println(v+"\n");
+                System.out.println("Objeto: "+v+"\n");
             } else {
                 System.out.println("Error. Las matrículas no coinciden.\n");
             }

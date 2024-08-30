@@ -94,12 +94,12 @@ public final class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" +
-                "matricula='" + matricula + '\'' +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", anio='" + anio + '\'' +
-                ", color='" + color + '\'' +
+        return "Vehiculo{\n" +
+                "Matricula: '" + matricula + '\'' +
+                "\nMarca: '" + marca + '\'' +
+                "\nModelo: '" + modelo + '\'' +
+                "\nAño: '" + anio + '\'' +
+                "\nColor: '" + color + '\'' +
                 '}';
     }
 }
