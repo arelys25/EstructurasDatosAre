@@ -18,7 +18,7 @@ public class TestVehiculo {
     public static void main(String[] args) {
         // hacer el menu ciclado
         int opcion =0;
-        System.out.println("MUÑOZ TAPIA ARELY SINAI\nHERNANDEZ ZAMBRANO AXEL JOSUE\n");
+        System.out.println("\nMUÑOZ TAPIA ARELY SINAI\nHERNANDEZ ZAMBRANO AXEL JOSUE\n");
 
         do {
             System.out.println("0 - Salir");
