@@ -99,8 +99,6 @@ public class TestVehiculo {
             System.out.println("Introduce la matrícula:\n");
             String matricula = sc.next();
 
-
-
             System.out.println("Introduce la marca:\n");
             String marca = sc.next();
 
@@ -133,6 +131,8 @@ public class TestVehiculo {
             System.out.println("Introduce el año:\n");
             String anio = sc.next();
             int anioInt = 0;
+
+            // validar que el año sea un número y que no sea negativo
             try {
                 anioInt = Integer.parseInt(anio);
             } catch (NumberFormatException e) {
@@ -141,7 +141,6 @@ public class TestVehiculo {
 
             System.out.println("Introduce el modelo:\n");
             String modelo = sc.next();
-
 
             System.out.println("Introduce el color:\n");
             String color = sc.next();

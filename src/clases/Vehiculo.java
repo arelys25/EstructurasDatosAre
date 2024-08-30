@@ -14,10 +14,13 @@ public final class Vehiculo {
 
 
     // CONSTRUCTORES aplicando sobrecarga
+
+    // constructor con solo matrícula
     public Vehiculo(String matricula) {
         this.matricula = matricula;
     }
 
+    // constructor con 3 elementos
     public Vehiculo(String matricula, String marca, String anio) {
         // this.matricula = matricula;
         this(matricula); // utilizar el primer contructor mandando a llamar la función
@@ -25,6 +28,7 @@ public final class Vehiculo {
         this.anio = anio;
     }
 
+    // constructor con 5 elementos
     public Vehiculo(String matricula, String marca,String anio, String modelo,  String color) {
         //this.matricula = matricula;
         //this.marca = marca;
@@ -34,6 +38,7 @@ public final class Vehiculo {
         this.color = color;
     }
 
+    // MÉTODOS GET Y SET
     public String getMatricula() {
         return matricula;
     }
@@ -74,8 +79,8 @@ public final class Vehiculo {
         this.color = color;
     }
 
-    // EQUALS Y HASHCODE
 
+    // EQUALS Y HASHCODE
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,9 +94,8 @@ public final class Vehiculo {
         return Objects.hash(matricula);
     }
 
+
     // TOSTRING
-
-
     @Override
     public String toString() {
         return "Vehiculo{\n" +
