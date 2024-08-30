@@ -1,5 +1,8 @@
 package clases;
 
+// MUÑOZ TAPIA ARELY SINAI
+// HERNANDEZ ZAMBRANO AXEL JOSUE
+
 import java.util.Objects;
 
 public final class Vehiculo {
