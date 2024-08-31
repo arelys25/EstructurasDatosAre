@@ -55,6 +55,7 @@ public class TestVehiculo {
                             crearObjeto5Datos();
                             break;
                         case 2:
+                            mostrarDatos();
                             break;
                         case 3:
                             break;
@@ -284,7 +285,7 @@ public class TestVehiculo {
     }
 
     public static void mostrarDatos() {
-        if (v == null){
+        if (c == null){
             System.out.println("Error. Aún no se ha creado el objeto vehículo\n");
         } else {
             System.out.println("Introduce la matrícula a buscar:\n");
