@@ -5,7 +5,7 @@ package clases;
 
 import java.util.Objects;
 
-public final class Vehiculo {
+public  class Vehiculo {
 
     // ATRIBUTOS
     private String matricula;
