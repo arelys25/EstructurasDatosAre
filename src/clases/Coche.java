@@ -3,7 +3,8 @@ import clases.Vehiculo;
 
 import java.util.Objects;
 
-
+// MUÑOZ TAPIA ARELY SINAI
+// HERNANDEZ ZAMBRANO AXEL JOSUE
 public class Coche extends Vehiculo {
     String carroceria;
 
@@ -36,8 +37,13 @@ public class Coche extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Coche{" +
-                "carroceria='" + carroceria + '\'' +
+        return "Vehiculo{\n" +
+                "Matricula: '" + matricula + '\'' +
+                "\nMarca: '" + marca + '\'' +
+                "\nModelo: '" + modelo + '\'' +
+                "\nAño: '" + anio + '\'' +
+                "\nColor: '" + color + '\'' +
+                "\nCarroceria: "+carroceria+
                 '}';
     }
 }

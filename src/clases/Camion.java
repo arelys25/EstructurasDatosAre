@@ -1,7 +1,8 @@
 package clases;
 
 import java.util.Objects;
-
+// MUÑOZ TAPIA ARELY SINAI
+// HERNANDEZ ZAMBRANO AXEL JOSUE
 public class Camion extends Vehiculo{
 
     String tonelaje;
@@ -34,8 +35,13 @@ public class Camion extends Vehiculo{
 
     @Override
     public String toString() {
-        return "Camion{" +
-                "tonelaje='" + tonelaje + '\'' +
+        return "Vehiculo{\n" +
+                "Matricula: '" + matricula + '\'' +
+                "\nMarca: '" + marca + '\'' +
+                "\nModelo: '" + modelo + '\'' +
+                "\nAño: '" + anio + '\'' +
+                "\nColor: '" + color + '\'' +
+                "\nTonelaje: "+tonelaje+
                 '}';
     }
 }

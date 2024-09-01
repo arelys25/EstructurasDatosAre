@@ -1,12 +1,13 @@
 package clases;
 
 import java.util.Objects;
-
+// MUÑOZ TAPIA ARELY SINAI
+// HERNANDEZ ZAMBRANO AXEL JOSUE
 public class Moto extends Vehiculo {
 
     String cilindrada;
-    public Moto(String matriculate, String marca, String anio, String modelo, String color, String cilindrada) {
-        super(matriculate, marca, anio, modelo, color);
+    public Moto(String matricula, String marca, String anio, String modelo, String color, String cilindrada) {
+        super(matricula, marca, anio, modelo, color);
         this.cilindrada = cilindrada;
     }
 
@@ -34,8 +35,13 @@ public class Moto extends Vehiculo {
 
     @Override
     public String toString() {
-        return "Moto{" +
-                "cilindrada='" + cilindrada + '\'' +
+        return "Vehiculo{\n" +
+                "Matricula: '" + matricula + '\'' +
+                "\nMarca: '" + marca + '\'' +
+                "\nModelo: '" + modelo + '\'' +
+                "\nAño: '" + anio + '\'' +
+                "\nColor: '" + color + '\'' +
+                "\nCilindrada: "+cilindrada+
                 '}';
     }
 }

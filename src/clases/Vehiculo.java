@@ -8,11 +8,11 @@ import java.util.Objects;
 public  class Vehiculo {
 
     // ATRIBUTOS
-    private String matricula;
-    private String marca;
-    private String modelo;
-    private String anio;
-    private String color;
+    public String matricula;
+    public String marca;
+    public String modelo;
+    public String anio;
+    public String color;
 
 
 
