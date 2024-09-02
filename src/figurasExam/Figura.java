@@ -17,7 +17,7 @@ abstract class Figura {
         return nombre;
     }
 
-    // METODOS
+    // METODOS ABSTRACTOS
     public abstract double calcularPerimetro();
     public abstract double calcularArea();
     public abstract double calcularVolumen();
