@@ -1,4 +1,6 @@
 package figurasExam;
+// MUÑOZ TAPIA ARELY SINAI
+// HERNANDEZ ZAMBRANO AXEL JOSUE
 
 abstract class Figura2D extends Figura {
     public Figura2D(String nombre) {
