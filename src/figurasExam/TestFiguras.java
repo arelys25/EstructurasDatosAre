@@ -16,7 +16,7 @@ public class TestFiguras {
 
         while (true) {
             int opcion;
-            System.out.println("Seleccione una figura:");
+            System.out.println("\nSeleccione una figura:");
             System.out.println("1. Círculo");
             System.out.println("2. Cuadrado");
             System.out.println("3. Triángulo");
