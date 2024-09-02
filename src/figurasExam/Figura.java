@@ -1,6 +1,6 @@
 package figurasExam;
 // HERNANDEZ ZAMBRANO AXEL JOSUE
-// MUÑOZ TAPIA ASRELY SINAI
+// MUÑOZ TAPIA ARELY SINAI
 
 abstract class Figura {
 
