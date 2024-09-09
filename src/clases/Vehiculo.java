@@ -18,6 +18,10 @@ public  class Vehiculo {
 
     // CONSTRUCTORES aplicando sobrecarga
 
+
+    public Vehiculo() {
+    }
+
     // constructor con solo matrícula
     public Vehiculo(String matricula) {
         this.matricula = matricula;

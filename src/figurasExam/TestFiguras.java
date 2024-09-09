@@ -4,9 +4,7 @@ package figurasExam;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class TestFiguras {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Figura figura = null;
