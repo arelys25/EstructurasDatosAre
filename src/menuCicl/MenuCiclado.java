@@ -105,9 +105,53 @@ public class MenuCiclado {
 
     public static void eliminar (){
 
+        // validar que el arreglo exista
+
+        boolean encontrado = false;
+        System.out.println("¿Cual es la mastricula de tu vehiculo?\n");
+        String mat = sc.next();
+
+        for (int i = 0; i < estacionamiento.length; i++) {
+            Vehiculo vehi = estacionamiento[i];
+
+            // equalsIgnoreCase ignora si el usuario escribio mayusculas, minusculas etc
+            if (vehi.getMatricula().equalsIgnoreCase(mat)) {
+                System.out.println("Vehiculo encontrado\n");
+                System.out.println(vehi);
+                estacionamiento[i] = null;
+                System.out.println("Vehiculo borrado.\n");
+                encontrado = true;
+                break; // si lo encontro, que deje de buscar y que salga del ciclo
+            }
+
+        }
+
+        if (encontrado == false){
+            System.out.println("Error. Vehiculo NO encontrado.\n");
+        }
+        System.out.println("");
     }
 
     public static void buscar (){
+        // validar que el arreglo exista
+
+        boolean encontrado = false;
+        System.out.println("¿Cual es la mastricula de tu vehiculo?\n");
+        String mat = sc.next();
+        for (Vehiculo vehi:estacionamiento) {
+            // equalsIgnoreCase ignora si el usuario escribio mayusculas, minusculas etc
+            if (vehi.getMatricula().equalsIgnoreCase(mat)){
+                System.out.println("Vehiculo encontrado\n");
+                System.out.println(vehi);
+                encontrado = true;
+                break; // si lo encontro, que deje de buscar y que salga del ciclo
+            }
+        }
+
+        if (encontrado == false){
+            System.out.println("Error. Vehiculo NO encontrado.\n");
+        }
+        System.out.println("");
 
     }
 
