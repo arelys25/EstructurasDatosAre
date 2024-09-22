@@ -52,6 +52,9 @@ public class MenuCiclado {
                 case 7:
                     vaciar();
                     break;
+                default:
+                    System.out.println("Error. Opcion no valida.\n");
+                    break;
             }
 
         } while (opc != 0);
