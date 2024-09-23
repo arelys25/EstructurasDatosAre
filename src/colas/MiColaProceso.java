@@ -1,21 +1,17 @@
 package colas;
 
-public class MiColaProceso implements  ColaProceso{
+public class MiColaProceso implements ColaProceso {
 
-    // nodo dentro de la cola de proceso
     private class NodoProceso {
-        // puntero de Trabajo
         public Trabajo trabajo;
-        // puntero de siguiente
-        public NodoProceso siguente;
+        public NodoProceso siguiente;
 
-        public NodoProceso (Trabajo trabajo) {
+        public NodoProceso(Trabajo trabajo) {
             this.trabajo = trabajo;
         }
     }
 
-    // crear punteros
-    private NodoProceso cabeza,ultimo;
+    private NodoProceso cabeza, ultimo;
 
     @Override
     public void encolar(Trabajo t) {
@@ -23,35 +19,35 @@ public class MiColaProceso implements  ColaProceso{
 
         if (cabeza == null) {
             cabeza = nuevoNodo;
-            System.out.println("\nLa cola se ha creado con exito");
+            ultimo = nuevoNodo; // Asegúrate de asignar también el último
+            System.out.println("\nLa cola se ha creado con éxito.");
         } else {
-            ultimo.siguente = nuevoNodo;
+            ultimo.siguiente = nuevoNodo;
+            ultimo = nuevoNodo; // Actualiza el último nodo
         }
-
-        ultimo = nuevoNodo;
     }
 
     @Override
     public void eliminar() {
-        if (cabeza != null){
+        if (cabeza != null) {
             NodoProceso eliminar = cabeza;
-            cabeza = cabeza.siguente;
-            eliminar.siguente = null;
+            cabeza = cabeza.siguiente;
+            eliminar.siguiente = null;
             if (cabeza == null) {
                 ultimo = null;
-                System.out.println("\nLa cola quedo vacia.");
+                System.out.println("\nLa cola quedó vacía.");
             }
         } else {
-            System.out.println("\nLa cola esta vacia, no hay nada que eliminar.");
+            System.out.println("\nLa cola está vacía, no hay nada que eliminar.");
         }
     }
 
     @Override
     public Trabajo obtener() {
-        if (cabeza == null){
-            System.out.println("La cola esta vacia o ha sido destruida");
+        if (cabeza == null) {
+            System.out.println("La cola está vacía o ha sido destruida.");
             return null;
-        } else  {
+        } else {
             return cabeza.trabajo;
         }
     }
@@ -61,8 +57,11 @@ public class MiColaProceso implements  ColaProceso{
         if (cabeza == null) {
             System.out.println("No existe cola, ya ha sido borrada o destruida.");
         } else {
-
-            System.out.println(toString());
+            NodoProceso actual = cabeza;
+            while (actual != null) {
+                System.out.println(actual.trabajo);
+                actual = actual.siguiente;
+            }
         }
     }
 
@@ -71,26 +70,15 @@ public class MiColaProceso implements  ColaProceso{
         if (cabeza == null) {
             System.out.println("No existe cola, ya ha sido borrada o destruida.");
         } else {
-            while (cabeza != null){
-                NodoProceso eliminar = cabeza;
-                cabeza = cabeza.siguente;
-                eliminar.siguente = null;
+            while (cabeza != null) {
+                eliminar();
             }
-            System.out.println("La cola ha sido borrada con exito.");
+            System.out.println("La cola ha sido borrada con éxito.");
         }
     }
 
     @Override
     public void destruirCola() {
-        if (cabeza == null) {
-            System.out.println("No existe cola, ya ha sido borrada o destruida.");
-        } else {
-            while (cabeza != null){
-                NodoProceso eliminar = cabeza;
-                cabeza = cabeza.siguente;
-                eliminar.siguente = null;
-            }
-            System.out.println("La cola ha sido borrada con exito.");
-        }
+        vaciarCola(); // Llama al método vaciarCola
     }
 }

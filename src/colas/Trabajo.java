@@ -1,5 +1,4 @@
 package colas;
-
 import java.util.Objects;
 
 public class Trabajo {

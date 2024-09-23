@@ -1,5 +1,6 @@
 package colas;
 
+
 public interface ColaProceso {
     // metodos que vamos a usar
 
@@ -14,6 +15,5 @@ public interface ColaProceso {
     void  vaciarCola ();
 
     void destruirCola ();
-
 
 }
