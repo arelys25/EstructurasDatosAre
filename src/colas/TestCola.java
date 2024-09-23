@@ -8,7 +8,7 @@ public class TestCola {
     private static MiColaProceso cola;//instancia de la cola
 
     public static void main(String []args){
-        String titulo, autor;
+        String titulo, autor,isbn;
         do{
             System.out.println("MENU DE OPCIONES");
             System.out.println("0- SALIR");
@@ -36,7 +36,9 @@ public class TestCola {
                         titulo = sc.nextLine();
                         System.out.println("ingrese el autor: ");
                         autor = sc.nextLine();
-                        Trabajo trabajo = new Trabajo(titulo, autor);
+                        System.out.println("Ingresa el codigo del libro");
+                        isbn = sc.nextLine();
+                        Trabajo trabajo = new Trabajo(titulo, autor,isbn);
                         cola.encolar(trabajo);
                     }
                     break;

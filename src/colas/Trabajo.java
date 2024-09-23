@@ -5,12 +5,12 @@ public class Trabajo {
 
     private String titulo;
     private String autor;
-    private boolean impreso;
+    private String isbn;
 
-    public Trabajo(String titulo, String autor) {
+    public Trabajo(String titulo, String autor, String isbn) {
         this.titulo = titulo;
         this.autor = autor;
-        this.impreso = false;
+        this.isbn = isbn;
     }
 
     public String getTitulo() {
@@ -29,12 +29,12 @@ public class Trabajo {
         this.autor = autor;
     }
 
-    public boolean isImpreso() {
-        return impreso;
+    public String isImpreso() {
+        return isbn;
     }
 
-    public void setImpreso(boolean impreso) {
-        this.impreso = impreso;
+    public void setImpreso(String impreso) {
+        this.isbn = impreso;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Trabajo {
         return "Trabajo{" +
                 "titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
-                ", impreso=" + impreso +
+                ", codigo del libro=" + isbn +
                 '}';
     }
 }
