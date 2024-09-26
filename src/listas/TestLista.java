@@ -15,12 +15,13 @@ public class TestLista {
              System.out.println("\nMenu:");
              System.out.println("0 - Salir");
              System.out.println("1 - Crear lista");
-             System.out.println("2 - Agregar nuevo libro");
+             System.out.println("2 - Agregar nuevo libro sl final de la lista");
              System.out.println("3 - Agregar nuevo libro en una posicion especifica");
-             System.out.println("4 - Quitar un libro de la lista");
-             System.out.println("5 - Mostrar lista");
-             System.out.println("6 - Vaciar lista");
-             System.out.println("7 - Destruir lista\n");
+             System.out.println("4 - Eliminar un libro del final de la lista");
+             System.out.println("5 - Eliminar un libro en una posicion especifica");
+             System.out.println("6 - Mostrar lista");
+             System.out.println("7 - Vaciar lista");
+             System.out.println("8 - Destruir lista\n");
              System.out.println("Ingrese la opcion:");
 
              opc = sc.nextInt();
@@ -36,15 +37,22 @@ public class TestLista {
                      agregarLibro();
                      break;
                  case 3:
+                     agregarLibroEspecifico();
                      break;
                  case 4:
+                     eliminarLibroFinal();
                      break;
                  case 5:
-                     lista.mostrarLibros();
+                     eliminarLibroEspecifico();
                      break;
                  case 6:
+                     System.out.println(lista.mostrarLibros());
                      break;
                  case 7:
+                     vaciarLista();
+                     break;
+                 case 8:
+                     destruirLista();
                      break;
                  default:
                      System.out.println("Error. Opcion invalida.\n");
@@ -52,6 +60,60 @@ public class TestLista {
 
          } while (opc != 0);
      }
+
+    private static void destruirLista(){
+
+    }
+     private static void vaciarLista(){
+
+    }
+     private static void eliminarLibroEspecifico() {
+    }
+
+    private static void eliminarLibroFinal() {
+        if (lista == null) {
+            System.out.println("La lista no ha sido creada\n");
+        } else {
+            // agregar el objeto a la lista
+            lista.quitar();
+            System.out.println("Elemento borrado con exito\n.");
+            System.out.println(lista.mostrarLibros());
+
+        }
+    }
+
+    private static void agregarLibroEspecifico() {
+        if (lista == null) {
+            System.out.println("La lista no ha sido creada\n");
+        } else {
+            System.out.println("Introduce el titulo:");
+            String titulo = sc.next();
+            System.out.println("Introduce el autor:");
+            String autor = sc.next();
+            System.out.println("Introduce el codigo del libro:");
+            String isbn = sc.next();
+
+            System.out.println("Lugares disponibles: \n0 y "+(lista.getCantidad()));
+            System.out.println("Introduce la posicion donde deseas colocar el libro:");
+            int posicion = sc.nextInt();
+
+            if (posicion >= 0 && posicion <= lista.getCantidad()) {
+                libro = new Trabajo(titulo,autor,isbn);
+
+                // agregar el objeto a la lista
+                if (lista.agregarEnPosicion(libro,posicion)) {
+                    System.out.println("Elemento agregado\n");
+                    System.out.println(lista.mostrarLibros());
+                    System.out.println("");
+                }
+
+            } else {
+                System.out.println("Error. La posicion ingresada es invalida o esta fuera de rango.\n");
+                System.out.println("Lugares disponibles: \n0 y "+(lista.getCantidad()));
+            }
+
+        }
+    }
 
 
     private static void agregarLibro() {
