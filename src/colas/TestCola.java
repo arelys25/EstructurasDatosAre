@@ -38,8 +38,10 @@ public class TestCola {
                         autor = sc.nextLine();
                         System.out.println("Ingresa el codigo del libro");
                         isbn = sc.nextLine();
-                        Trabajo trabajo = new Trabajo(titulo, autor,isbn);
-                        cola.encolar(trabajo);
+
+                        // LOS COMENTE PORQUE MODIFIQUE LA CLASE TRABAJO
+                        //Trabajo trabajo = new Trabajo(titulo, autor,isbn);
+                        //cola.encolar(trabajo);
                     }
                     break;
                 case 3:

@@ -110,12 +110,41 @@ public class ListaSimple {
         return libros;
     }
 
-    public Trabajo quitarEnPosicion (int posicion){
-        return null;
+    public Trabajo quitarEnPosicion(int posicion) {
+        if (inicio == null) { // La lista está vacía
+            return null;
+        }
+
+        if (posicion == 0) { // Si se quiere eliminar el primer nodo
+            Trabajo libro = inicio.dato;
+            inicio = inicio.siguiente; // Mover el inicio al siguiente nodo
+            cantidad--;
+            return libro;
+        }
+
+        aux = inicio;
+        int contador = 0;
+
+        // Buscar el nodo anterior al que se quiere eliminar
+        while (aux != null && contador < posicion - 1) {
+            aux = aux.siguiente;
+            contador++;
+        }
+
+        if (aux == null || aux.siguiente == null) { // Si la posición no es válida
+            return null;
+        }
+
+        Trabajo libro = aux.siguiente.dato; // Obtener el libro a eliminar
+        aux.siguiente = aux.siguiente.siguiente; // Saltar el nodo a eliminar
+        cantidad--;
+        return libro; // Retornar el libro eliminado
     }
 
     public void vaciar (){
-
+        inicio = null; // Reiniciar el inicio para vaciar la lista
+        cantidad = 0; // Establecer la cantidad a 0
+        System.out.println("Lista vaciada\n");
     }
 
     public int getCantidad(){
@@ -127,3 +156,4 @@ public class ListaSimple {
     }
 
 }
+
