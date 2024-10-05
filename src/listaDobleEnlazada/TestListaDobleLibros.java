@@ -193,17 +193,18 @@ public class TestListaDobleLibros {
 
             while (!entrada){
                 try {
-                    System.out.println("Puedes agregar libros desde la posicion 0 a la posicion "+listaDoble.getCantidad());
                     System.out.println("\nIngresa la posicion en la que deseas introducir el libro:");
+                    System.out.println("Puedes agregar libros desde la posicion 0 a la posicion "+listaDoble.getCantidad());
+
                     posicion = sc.nextInt();
 
                     if (posicion > listaDoble.getCantidad() || posicion < 0){
-                        System.out.println("Error. Posicion invalida\n");
+                        System.out.println("\nError. Posicion invalida\n");
                     } else {
                         entrada = true;
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Error. Numero invalido");
+                    System.out.println("\nError. Numero invalido");
                     sc.nextLine(); // limpia el bufer del scanner en caso de que haya respondido mal el usuario
                 }
             }
