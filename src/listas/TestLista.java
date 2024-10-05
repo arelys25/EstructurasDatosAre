@@ -123,7 +123,7 @@ public class TestLista {
             int posicion = sc.nextInt();
 
             if (posicion >= 0 && posicion <= lista.getCantidad()) {
-                libro = new Trabajo(titulo,autor);
+                libro = new Trabajo(titulo,autor, libro.getAnio());
 
                 // agregar el objeto a la lista
                 if (lista.agregarEnPosicion(libro,posicion)) {
@@ -152,7 +152,7 @@ public class TestLista {
             System.out.println("Introduce el codigo del libro:");
             String isbn = sc.next();
 
-            libro = new Trabajo(titulo,autor);
+            libro = new Trabajo(titulo,autor, libro.getAnio());
 
             // agregar el objeto a la lista
             if (lista.agregar(libro)) {
