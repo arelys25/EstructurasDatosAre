@@ -130,8 +130,65 @@ public class ListaDobleLibros {
         }
 
     }
+    public Trabajo eliminarElementoFinal() {
+        if (inicio == null) { // La lista está vacía
+            return null;
+        }
+
+        Trabajo libro = fin.dato; // Guarda el dato del nodo a eliminar
+
+        if (inicio == fin) { // Solo hay un elemento en la lista
+            inicio = fin = null; // La lista queda vacía
+        } else {
+            fin = fin.anterior; // Mueve el puntero `fin` al nodo anterior
+            fin.siguiente = null; // El nuevo `fin` ahora no tiene siguiente
+        }
+
+        cantidad--; // Disminuye la cantidad de elementos
+        return libro; // Retorna el libro eliminado
+    }
+
 
     public int getCantidad (){
         return cantidad;
     }
+    public Trabajo eliminarElementoEnPosicion(int posicion) {
+        if (posicion < 0 || posicion >= cantidad) {
+            return null; // Posición inválida
+        }
+
+        if (posicion == 0) {
+            return eliminarElementoDelInicio();
+        } else if (posicion == cantidad - 1) {
+            return eliminarElementoFinal();
+        } else {
+            aux = inicio;
+            for (int i = 0; i < posicion; i++) {
+                aux = aux.siguiente;
+            }
+            Trabajo libro = aux.dato;
+            aux.anterior.siguiente = aux.siguiente;
+            if (aux.siguiente != null) {
+                aux.siguiente.anterior = aux.anterior;
+            }
+            cantidad--;
+            return libro;
+        }
+    }
+    public void modificarElementoEnPosicion(int posicion, Trabajo nuevoTrabajo) {
+        if (posicion < 0 || posicion >= cantidad) {
+            return; // Posición inválida
+        }
+
+        aux = inicio;
+        for (int i = 0; i < posicion; i++) {
+            aux = aux.siguiente;
+        }
+        aux.dato = nuevoTrabajo; // Cambia el trabajo en la posición dada
+    }
+    public void vaciarLista() {
+        inicio = fin = null;
+        cantidad = 0;
+    }
+
 }

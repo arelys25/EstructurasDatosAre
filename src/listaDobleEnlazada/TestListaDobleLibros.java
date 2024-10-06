@@ -12,6 +12,7 @@ public class TestListaDobleLibros {
     private static ListaDobleLibros listaDoble;
     private static Trabajo libro;
     private static Nodo nodo;
+
     public static void main(String[] args) {
         System.out.println("\nAxel Josue Hernandez Zambrano\nArely Sinai Muñoz Tapia\n");
 
@@ -34,7 +35,7 @@ public class TestListaDobleLibros {
 
             opc = sc.nextInt();
 
-            switch (opc){
+            switch (opc) {
                 case 0:
                     System.out.println("Fin del programa.");
                     break;
@@ -85,7 +86,7 @@ public class TestListaDobleLibros {
     }
 
     private static void crearListaDoble() {
-        if (listaDoble == null){
+        if (listaDoble == null) {
             listaDoble = new ListaDobleLibros();
             System.out.println("Lista creada con exito.\n");
         } else {
@@ -94,7 +95,7 @@ public class TestListaDobleLibros {
     }
 
     private static void mostrarLista() {
-        if (listaDoble == null){
+        if (listaDoble == null) {
             System.out.println("Aun no se ha creado la lista.\n");
         } else {
             System.out.println(listaDoble.mostrarLibros());
@@ -115,7 +116,7 @@ public class TestListaDobleLibros {
             try {
                 int anio = sc.nextInt();
 
-                libro = new Trabajo(titulo,autor,anio);
+                libro = new Trabajo(titulo, autor, anio);
 
                 // agregar el libro a la lsita doble
                 listaDoble.agregarAlInicio(libro);
@@ -147,7 +148,7 @@ public class TestListaDobleLibros {
             try {
                 int anio = sc.nextInt();
 
-                libro = new Trabajo(titulo,autor,anio);
+                libro = new Trabajo(titulo, autor, anio);
 
                 // agregar el libro a la lsita doble
                 listaDoble.agregarAlFinal(libro);
@@ -177,7 +178,7 @@ public class TestListaDobleLibros {
             int anio = 0;
             boolean entrada = false;
 
-            while (!entrada){
+            while (!entrada) {
                 try {
                     System.out.println("\nIngresa el anio de publicacion del libro:");
                     anio = sc.nextInt();
@@ -191,14 +192,14 @@ public class TestListaDobleLibros {
             int posicion = 0;
             entrada = false;
 
-            while (!entrada){
+            while (!entrada) {
                 try {
                     System.out.println("\nIngresa la posicion en la que deseas introducir el libro:");
-                    System.out.println("Puedes agregar libros desde la posicion 0 a la posicion "+listaDoble.getCantidad());
+                    System.out.println("Puedes agregar libros desde la posicion 0 a la posicion " + listaDoble.getCantidad());
 
                     posicion = sc.nextInt();
 
-                    if (posicion > listaDoble.getCantidad() || posicion < 0){
+                    if (posicion > listaDoble.getCantidad() || posicion < 0) {
                         System.out.println("\nError. Posicion invalida\n");
                     } else {
                         entrada = true;
@@ -209,10 +210,10 @@ public class TestListaDobleLibros {
                 }
             }
 
-            libro = new Trabajo(titulo,autor,anio);
+            libro = new Trabajo(titulo, autor, anio);
 
             // agregar el libro a la lsita doble
-            listaDoble.agregarPuntoEspecifico(libro,posicion);
+            listaDoble.agregarPuntoEspecifico(libro, posicion);
             System.out.println("Elemento agregardo\n");
 
             // mostrar la lista para ver que el libro se haya guardado
@@ -235,27 +236,123 @@ public class TestListaDobleLibros {
     }
 
     private static void eliminarAlFinal() {
-    }
-
-    private static void eliminarPosicionEspecifica() {
-    }
-
-    private static void modificarPosicionEspecifica() {
-    }
-
-    private static void mostrarCantidad() {
-        if (listaDoble == null){
-            System.out.println("Aun no se ha creado la lista.\n");
+        if (listaDoble == null) {
+            System.out.println("La lista aun no ha sido creada \n");
         } else {
-            System.out.println("\nCantidad de libros en la lista: "+listaDoble.getCantidad());
+            listaDoble.eliminarElementoFinal();
+            System.out.println("Libro del final eliminado correctamente");
+            mostrarLista();
         }
     }
 
-    private static void vaciarLista() {
+    private static void eliminarPosicionEspecifica() {
+        if (listaDoble == null) {
+            System.out.println("La lista aun no ha sido creada.\n");
+            return;
+        }
 
+        int posicion = -1;
+        boolean entrada = false;
+
+        while (!entrada) {
+            try {
+                System.out.println("Ingresa la posicion del libro que deseas eliminar:");
+                posicion = sc.nextInt();
+
+                if (posicion < 0 || posicion >= listaDoble.getCantidad()) {
+                    System.out.println("\nError. Posicion invalida\n");
+                } else {
+                    entrada = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("\nError. Numero invalido");
+                sc.nextLine(); // limpia el bufer del scanner en caso de que haya respondido mal el usuario
+            }
+        }
+
+        Trabajo libroEliminado = listaDoble.eliminarElementoEnPosicion(posicion);
+        if (libroEliminado != null) {
+            System.out.println("Libro en la posicion " + posicion + " eliminado correctamente: " + libroEliminado);
+        } else {
+            System.out.println("No se pudo eliminar el libro.");
+        }
+        mostrarLista();
+    }
+
+    private static void modificarPosicionEspecifica() {
+        if (listaDoble == null) {
+            System.out.println("La lista aun no ha sido creada.\n");
+            return;
+        }
+
+        int posicion = -1;
+        boolean entrada = false;
+
+        while (!entrada) {
+            try {
+                System.out.println("Ingresa la posicion del libro que deseas modificar:");
+                posicion = sc.nextInt();
+
+                if (posicion < 0 || posicion >= listaDoble.getCantidad()) {
+                    System.out.println("\nError. Posicion invalida\n");
+                } else {
+                    entrada = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("\nError. Numero invalido");
+                sc.nextLine(); // limpia el bufer del scanner en caso de que haya respondido mal el usuario
+            }
+        }
+
+        System.out.println("Ingresa el nuevo titulo del libro:");
+        String nuevoTitulo = sc.next();
+        System.out.println("Ingresa el nuevo autor del libro:");
+        String nuevoAutor = sc.next();
+        int nuevoAnio = 0;
+        entrada = false;
+
+        while (!entrada) {
+            try {
+                System.out.println("Ingresa el nuevo anio de publicacion del libro:");
+                nuevoAnio = sc.nextInt();
+                entrada = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Error. Numero invalido");
+                sc.nextLine(); // limpia el bufer del scanner en caso de que haya respondido mal el usuario
+            }
+        }
+
+        Trabajo libroModificado = new Trabajo(nuevoTitulo, nuevoAutor, nuevoAnio);
+        listaDoble.modificarElementoEnPosicion(posicion, libroModificado);
+        System.out.println("Libro modificado correctamente.");
+        mostrarLista();
+    }
+
+    private static void vaciarLista() {
+        if (listaDoble == null) {
+            System.out.println("La lista aun no ha sido creada.\n");
+        } else {
+            listaDoble.vaciarLista();
+            System.out.println("Lista vaciada correctamente.");
+        }
     }
 
     private static void destruirLista() {
-
+        if (listaDoble != null) {
+            listaDoble = null;
+            System.out.println("Lista destruida correctamente.");
+        } else {
+            System.out.println("La lista ya ha sido destruida o nunca fue creada.");
+        }
     }
+
+
+    private static void mostrarCantidad() {
+        if (listaDoble == null) {
+            System.out.println("Aun no se ha creado la lista.\n");
+        } else {
+            System.out.println("\nCantidad de libros en la lista: " + listaDoble.getCantidad());
+        }
+    }
+
 }
