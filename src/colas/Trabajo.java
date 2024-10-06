@@ -1,5 +1,6 @@
+// ARELY SINAI MUÑOZ TAPIA
+// AXEL JOSUE HERNANDEZ ZAMBRANO
 package colas;
-import java.util.Objects;
 
 public class Trabajo {
 

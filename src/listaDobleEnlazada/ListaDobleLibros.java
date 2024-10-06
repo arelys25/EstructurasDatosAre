@@ -1,3 +1,6 @@
+// ARELY SINAI MUÑOZ TAPIA
+// AXEL JOSUE HERNANDEZ ZAMBRANO
+
 package listaDobleEnlazada;
 import listas.Nodo;
 import colas.Trabajo;

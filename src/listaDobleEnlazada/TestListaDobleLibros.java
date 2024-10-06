@@ -1,3 +1,6 @@
+// ARELY SINAI MUÑOZ TAPIA
+// AXEL JOSUE HERNANDEZ ZAMBRANO
+
 package listaDobleEnlazada;
 import colas.Trabajo;
 import listas.Nodo;
@@ -354,5 +357,4 @@ public class TestListaDobleLibros {
             System.out.println("\nCantidad de libros en la lista: " + listaDoble.getCantidad());
         }
     }
-
 }
