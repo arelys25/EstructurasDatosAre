@@ -248,9 +248,26 @@ public class FrameListaCircularLibros {
                             int iIsbn = Integer.parseInt(sIsbn);
                             int iPosicion = Integer.parseInt(sPosicion);
 
+                            if (iPosicion > listaDobleCircular.getCantidad() || iPosicion < 0){
+                                JOptionPane.showMessageDialog(null,"Posicion invalida.");
+                            }
+
+                            libro = new Libro(stitulo,sAutor,iIsbn);
+
+                            listaDobleCircular.ingresarEnPosicion(libro,iPosicion);
+
+                            resultTxtA.setText("Elemento agregado con exito.\n"+listaDobleCircular.mostrarElementos());
+
+                            isbnField.setText("");
+                            tituloField.setText("");
+                            autorField.setText("");
+                            posicionField.setText("");
+                            panel1.remove(posicionLabel);
+                            panel1.remove(posicionField);
+
 
                         } catch (NumberFormatException nfe) {
-                            JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
+                            JOptionPane.showMessageDialog(null,"Error. ISBN invalido o posicion invalida.");
                         }
                     }
                 }
@@ -387,6 +404,7 @@ public class FrameListaCircularLibros {
 
                 } else {
 
+                    resultTxtA.setText("Cantidad de libros en la lista: "+listaDobleCircular.getCantidad());
                 }
             }
         });
