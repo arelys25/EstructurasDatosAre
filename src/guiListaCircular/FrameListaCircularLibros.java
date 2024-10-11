@@ -1,7 +1,6 @@
 package guiListaCircular;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -236,6 +235,8 @@ public class FrameListaCircularLibros {
                     panel1.revalidate(); // Recalcula el diseño del panel por añadir nuevos elementos en la condicion
                     panel1.repaint();    // Redibuja el panel para que los nuevos componentes se vean
 
+                    resultTxtA.setText("Posiciones disponibles: Del 0 al "+listaDobleCircular.getCantidad());
+
                     String sIsbn = isbnField.getText();
                     String stitulo = tituloField.getText();
                     String sAutor = autorField.getText();
@@ -250,20 +251,20 @@ public class FrameListaCircularLibros {
 
                             if (iPosicion > listaDobleCircular.getCantidad() || iPosicion < 0){
                                 JOptionPane.showMessageDialog(null,"Posicion invalida.");
+                            } else {
+                                libro = new Libro(stitulo,sAutor,iIsbn);
+
+                                listaDobleCircular.ingresarEnPosicion(libro,iPosicion);
+
+                                resultTxtA.setText("Elemento agregado con exito.\n"+listaDobleCircular.mostrarElementos());
+
+                                isbnField.setText("");
+                                tituloField.setText("");
+                                autorField.setText("");
+                                posicionField.setText("");
+                                panel1.remove(posicionLabel);
+                                panel1.remove(posicionField);
                             }
-
-                            libro = new Libro(stitulo,sAutor,iIsbn);
-
-                            listaDobleCircular.ingresarEnPosicion(libro,iPosicion);
-
-                            resultTxtA.setText("Elemento agregado con exito.\n"+listaDobleCircular.mostrarElementos());
-
-                            isbnField.setText("");
-                            tituloField.setText("");
-                            autorField.setText("");
-                            posicionField.setText("");
-                            panel1.remove(posicionLabel);
-                            panel1.remove(posicionField);
 
 
                         } catch (NumberFormatException nfe) {
@@ -281,21 +282,14 @@ public class FrameListaCircularLibros {
                     JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
 
                 } else {
-                    String sIsbn = isbnField.getText();
-                    String stitulo = tituloField.getText();
-                    String sAutor = autorField.getText();
+                    Libro libroEliminado = listaDobleCircular.eliminarInicio();
 
-                    if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
-                        JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+                    if (libroEliminado != null) {
+                        // Actualizar el campo de texto con el libro eliminado y la lista actualizada
+                        resultTxtA.setText("Elemento eliminado correctamente.\n\nLibro eliminado:\n\n"+libroEliminado.toString() +
+                                "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
                     } else {
-                        try {
-                            int iIsbn = Integer.parseInt(sIsbn);
-
-
-
-                        } catch (NumberFormatException nfe) {
-                            JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
-                        }
+                        resultTxtA.setText("No se pudo eliminar el libro. La lista está vacía.");
                     }
                 }
             }
@@ -440,7 +434,7 @@ public class FrameListaCircularLibros {
                     JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
 
                 } else {
-
+                    resultTxtA.setText(listaDobleCircular.primeroFuncion().toString());
                 }
             }
         });
@@ -452,6 +446,7 @@ public class FrameListaCircularLibros {
                     JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
 
                 } else {
+                    resultTxtA.setText(listaDobleCircular.siguienteFuncion().toString());
 
                 }
             }

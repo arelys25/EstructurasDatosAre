@@ -83,42 +83,88 @@ public class ListaDobleCircular {
 
         if (primero == null && posicion == 0){
             primero = ultimo = nuevo;
+            primero.siguiente = primero;
+            primero.anterior = ultimo;
+            ultimo.siguiente = primero;
             cantidad ++;
             return true;
         }
 
         if (posicion == 0){
-            nuevo.siguiente = primero;       // El nuevo nodo apunta al antiguo primero
-            nuevo.anterior = ultimo;         // El nuevo nodo apunta al último nodo
-            primero.anterior = nuevo;        // El antiguo primero apunta hacia atrás al nuevo nodo
-            ultimo.siguiente = nuevo;        // El último nodo apunta hacia adelante al nuevo nodo
-            primero = nuevo;                 // El nuevo nodo se convierte en el primero
-
-            cantidad ++;
+            ingresarInicio(libro);
             return true;
-        }
+        } else if (posicion == cantidad) { // si es la ultima posicion
+            ingresarFinal(libro);
+            return true;
+        } else {
+            int contador = 0;
 
-        int contador = 0;
+            actual = primero;
 
-        actual = primero;
+            // buscar la posicion del usuario
+            while (contador < posicion -1){
+                actual = actual.siguiente;
+                contador ++;
+            }
 
-        // buscar la posicion del usuario
-        do {
-            actual = actual.siguiente;
-            contador ++;
-
-        } while (actual != primero && contador < posicion -1);
-
-        // si encontramos la posicion del usuario
-        if (actual != null) {
+            // insertar el nuevo nodo entre 'actual' y 'actual.siguiente'
             nuevo.siguiente = actual.siguiente;
+            nuevo.anterior = actual;
+            actual.siguiente.anterior = nuevo; // ajustar el enlace hacia atras del siguiente nodo
             actual.siguiente = nuevo;
 
             cantidad ++;
             return true;
         }
+    }
 
-        return false; // por si no se encontro la posicion ingrsada por el usuario
+    public Libro eliminarInicio(){
+        if (estaVacia()) { // si la lista esta vacia
+            return null;
+        }
+
+        Libro libro = primero.dato;
+
+        if (primero == ultimo) { // si hay un solo elemento en la lista
+            primero = ultimo = null;
+            cantidad --;
+            return libro;
+        } else { // si hay mas de un elemento en la lista
+            primero = primero.siguiente;
+            primero.anterior = ultimo;
+            ultimo.siguiente = primero;
+
+            cantidad --;
+            return libro;
+        }
+    }
+
+    public Libro primeroFuncion(){
+        if (estaVacia()) {
+            return null;
+        }
+        return primero.dato;
+
+    }
+
+    public Libro siguienteFuncion(){
+        if (estaVacia()) {
+            return null; // La lista está vacía
+        }
+
+        // Si estamos en el último nodo, volver al primero
+        if (actual == null) {
+            actual = primero; // Si no se ha inicializado, comenzamos desde el primero
+        }
+
+        actual = actual.siguiente; // Avanzar al siguiente nodo
+
+        // Si después de avanzar estamos de vuelta en el primero
+        if (actual == primero) {
+            return primero.dato; // retornar el dato del primero para que sea un ciclo
+        }
+
+        return actual.dato; // Retornar el dato del nodo actual
     }
 
     public int getCantidad (){
