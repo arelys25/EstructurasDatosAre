@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="recopiladorU2.gui.Principal">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="549" height="443"/>
+    </constraints>
+    <properties>
+      <background color="-4948918"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <toolbar id="57bb6">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="156cd" class="javax.swing.JButton" binding="arregloButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Arreglo"/>
+            </properties>
+          </component>
+          <component id="7703b" class="javax.swing.JInternalFrame">
+            <constraints/>
+            <properties/>
+          </component>
+          <component id="9c0c" class="javax.swing.JButton" binding="filaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Fila"/>
+            </properties>
+          </component>
+          <component id="917d5" class="javax.swing.JButton" binding="pilaButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Pila"/>
+            </properties>
+          </component>
+          <component id="a239a" class="javax.swing.JButton" binding="listaSimpleButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="ListaSimple"/>
+            </properties>
+          </component>
+          <component id="89044" class="javax.swing.JButton" binding="listaDobleButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="ListaDoble"/>
+            </properties>
+          </component>
+          <component id="8a6a" class="javax.swing.JButton" binding="listaCircularButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="ListaCircular"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
+      <component id="d0d61" class="javax.swing.JDesktopPane">
+        <constraints border-constraint="Center"/>
+        <properties/>
+      </component>
+    </children>
+  </grid>
+</form>

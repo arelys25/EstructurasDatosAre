@@ -146,6 +146,24 @@ public class ListaDobleCircular {
         return primero.dato;
 
     }
+    public Libro quitarFinal(){
+        if (estaVacia()) { // si la lista esta vacia
+            return null;
+        }
+
+        Libro libro = ultimo.dato;
+
+        if (ultimo == primero) { // si hay un solo elemento en la lista
+            ultimo = primero = null;
+            cantidad --;
+            return libro;
+        } else { // si hay mas de un elemento en la lista
+            ultimo = null;
+
+            cantidad --;
+            return libro;
+        }
+    }
 
     public Libro siguienteFuncion(){
         if (estaVacia()) {

@@ -302,21 +302,14 @@ public class FrameListaCircularLibros {
                     JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
 
                 } else {
-                    String sIsbn = isbnField.getText();
-                    String stitulo = tituloField.getText();
-                    String sAutor = autorField.getText();
+                    Libro libroEliminado = listaDobleCircular.quitarFinal();
 
-                    if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
-                        JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+                    if (libroEliminado != null) {
+                        // Actualizar el campo de texto con el libro eliminado y la lista actualizada
+                        resultTxtA.setText("Elemento eliminado correctamente.\n\nLibro eliminado:\n\n"+libroEliminado.toString() +
+                                "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
                     } else {
-                        try {
-                            int iIsbn = Integer.parseInt(sIsbn);
-
-
-
-                        } catch (NumberFormatException nfe) {
-                            JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
-                        }
+                        resultTxtA.setText("No se pudo eliminar el libro. La lista está vacía.");
                     }
                 }
             }
