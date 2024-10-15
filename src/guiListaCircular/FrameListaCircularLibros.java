@@ -302,14 +302,21 @@ public class FrameListaCircularLibros {
                     JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
 
                 } else {
-                    Libro libroEliminado = listaDobleCircular.quitarFinal();
+                    String sIsbn = isbnField.getText();
+                    String stitulo = tituloField.getText();
+                    String sAutor = autorField.getText();
 
-                    if (libroEliminado != null) {
-                        // Actualizar el campo de texto con el libro eliminado y la lista actualizada
-                        resultTxtA.setText("Elemento eliminado correctamente.\n\nLibro eliminado:\n\n"+libroEliminado.toString() +
-                                "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
+                    if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
+                        JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
                     } else {
-                        resultTxtA.setText("No se pudo eliminar el libro. La lista está vacía.");
+                        try {
+                            int iIsbn = Integer.parseInt(sIsbn);
+
+
+
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
+                        }
                     }
                 }
             }
@@ -483,6 +490,119 @@ public class FrameListaCircularLibros {
 
                 } else {
 
+                }
+            }
+        });
+
+        vaciarListaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listaDobleCircular == null) {
+                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado o ya ha sido destruida.");
+                } else {
+                    listaDobleCircular.vaciar();
+                    resultTxtA.setText("La lista ha sido vaciada.");
+                }
+            }
+        });
+
+        destruirListaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listaDobleCircular == null) {
+                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado o ya ha sido destruida.");
+                } else {
+                    listaDobleCircular.destruir();
+                    listaDobleCircular = null; // Resetear la referencia
+                    resultTxtA.setText("La lista ha sido destruida.");
+                }
+            }
+        });
+
+        quitarFinalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listaDobleCircular == null) {
+                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
+                } else {
+                    Libro eliminado = listaDobleCircular.eliminarFinal();
+                    if (eliminado != null) {
+                        resultTxtA.setText("Elemento eliminado correctamente.\n\nLibro eliminado:\n\n" + eliminado.toString() +
+                                "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
+                    } else {
+                        resultTxtA.setText("No se pudo eliminar el libro. La lista está vacía.");
+                    }
+                }
+            }
+        });
+
+        quitarEnPosicionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listaDobleCircular == null) {
+                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
+                } else {
+                    String sPosicion = posicionField.getText();
+                    try {
+                        int iPosicion = Integer.parseInt(sPosicion);
+                        Libro eliminado = listaDobleCircular.eliminarEnPosicion(iPosicion);
+                        if (eliminado != null) {
+                            resultTxtA.setText("Elemento eliminado correctamente.\n\nLibro eliminado:\n\n" + eliminado.toString() +
+                                    "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Error. Posición inválida o la lista está vacía.");
+                        }
+                    } catch (NumberFormatException nfe) {
+                        JOptionPane.showMessageDialog(null,"Error. Posición inválida.");
+                    }
+                }
+            }
+        });
+
+        modificarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listaDobleCircular == null) {
+                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
+                } else {
+                    String sPosicion = posicionField.getText();
+                    String sIsbn = isbnField.getText();
+                    String sTitulo = tituloField.getText();
+                    String sAutor = autorField.getText();
+                    try {
+                        int iPosicion = Integer.parseInt(sPosicion);
+                        int iIsbn = Integer.parseInt(sIsbn);
+                        Libro nuevoLibro = new Libro(sTitulo, sAutor, iIsbn);
+                        if (listaDobleCircular.modificar(iPosicion, nuevoLibro)) {
+                            resultTxtA.setText("Elemento modificado correctamente.\n\nElementos en la lista:\n" + listaDobleCircular.mostrarElementos());
+                        } else {
+                            JOptionPane.showMessageDialog(null,"Error. Posición inválida.");
+                        }
+                    } catch (NumberFormatException nfe) {
+                        JOptionPane.showMessageDialog(null,"Error. Datos inválidos.");
+                    }
+                }
+            }
+        });
+
+        anteriorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listaDobleCircular == null) {
+                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
+                } else {
+                    resultTxtA.setText(listaDobleCircular.anteriorFuncion().toString());
+                }
+            }
+        });
+
+        ultimoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (listaDobleCircular == null) {
+                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
+                } else {
+                    resultTxtA.setText(listaDobleCircular.ultimoFuncion().toString());
                 }
             }
         });
