@@ -1,7 +1,5 @@
 package recopiladorU2;
 
-import javax.swing.*;
-
 public class Principal extends javax.swing.JFrame {
 
     private JIFArreglo modArreglo;
@@ -9,7 +7,7 @@ public class Principal extends javax.swing.JFrame {
     private JIFLista modLista;
     private JIFListaDoble modListaDoble;
     private JIFListaCircular modListaCircular;
-    private JIFila modFila;
+    private JIFColas modColas;
 
 
     /**
@@ -17,6 +15,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setSize(1200,800);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,10 +27,9 @@ public class Principal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jToolBar1 = new javax.swing.JToolBar();
         btn_arreglo = new javax.swing.JButton();
-        btn_fila = new javax.swing.JButton();
+        btn_cola = new javax.swing.JButton();
         btn_pila = new javax.swing.JButton();
         btn_simple = new javax.swing.JButton();
         btn_doble = new javax.swing.JButton();
@@ -53,17 +52,18 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_arreglo);
 
-        btn_fila.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\fila.png")); // NOI18N
-        btn_fila.setText("Fila");
-        btn_fila.setFocusable(false);
-        btn_fila.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_fila.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_fila.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_filaActionPerformed(evt);
+        btn_cola.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\fila.png")); // NOI18N
+        btn_cola.setText("Cola");
+        btn_cola.setFocusable(false);
+        btn_cola.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_cola.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_cola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                btn_colaActionPerformed(evt);
             }
+
         });
-        jToolBar1.add(btn_fila);
+        jToolBar1.add(btn_cola);
 
         btn_pila.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\pila.png")); // NOI18N
         btn_pila.setText("Pila");
@@ -117,13 +117,12 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(dpn_escritorio, java.awt.BorderLayout.CENTER);
 
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_filaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filaActionPerformed
-        modFila = new JIFila();
-        dpn_escritorio.add(modFila);
+    private void btn_colaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filaActionPerformed
+        modColas = new JIFColas();
+        dpn_escritorio.add(modColas);
     }//GEN-LAST:event_btn_filaActionPerformed
 
     private void btn_arregloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_arregloActionPerformed
@@ -190,7 +189,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_arreglo;
     private javax.swing.JButton btn_circular;
     private javax.swing.JButton btn_doble;
-    private javax.swing.JButton btn_fila;
+    private javax.swing.JButton btn_cola;
     private javax.swing.JButton btn_pila;
     private javax.swing.JButton btn_simple;
     private javax.swing.JDesktopPane dpn_escritorio;
