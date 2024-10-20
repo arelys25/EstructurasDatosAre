@@ -237,6 +237,7 @@ public class JIFColas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"La cola aun no ha sido creada o ya fue vaciada/destruida.");
         }else {
             cola.destruirCola();
+            cola = null;
             jTextArea1.setText("Cola destruida correctamente.");
         }
     }
