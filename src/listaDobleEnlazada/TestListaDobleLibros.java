@@ -1,9 +1,7 @@
+package listaDobleEnlazada;
+
 // ARELY SINAI MUÑOZ TAPIA
 // AXEL JOSUE HERNANDEZ ZAMBRANO
-
-package listaDobleEnlazada;
-import colas.Trabajo;
-import listas.Nodo;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,7 +11,7 @@ public class TestListaDobleLibros {
     private static Scanner sc = new Scanner(System.in);
     private static int opc;
     private static ListaDobleLibros listaDoble;
-    private static Trabajo libro;
+    private static listaDobleEnlazada.Trabajo libro;
     private static Nodo nodo;
 
     public static void main(String[] args) {
@@ -119,7 +117,7 @@ public class TestListaDobleLibros {
             try {
                 int anio = sc.nextInt();
 
-                libro = new Trabajo(titulo, autor, anio);
+                libro = new listaDobleEnlazada.Trabajo(titulo, autor, anio);
 
                 // agregar el libro a la lsita doble
                 listaDoble.agregarAlInicio(libro);
@@ -151,7 +149,7 @@ public class TestListaDobleLibros {
             try {
                 int anio = sc.nextInt();
 
-                libro = new Trabajo(titulo, autor, anio);
+                libro = new listaDobleEnlazada.Trabajo(titulo, autor, anio);
 
                 // agregar el libro a la lsita doble
                 listaDoble.agregarAlFinal(libro);
@@ -213,7 +211,7 @@ public class TestListaDobleLibros {
                 }
             }
 
-            libro = new Trabajo(titulo, autor, anio);
+            libro = new listaDobleEnlazada.Trabajo(titulo, autor, anio);
 
             // agregar el libro a la lsita doble
             listaDoble.agregarPuntoEspecifico(libro, posicion);
@@ -273,7 +271,7 @@ public class TestListaDobleLibros {
             }
         }
 
-        Trabajo libroEliminado = listaDoble.eliminarElementoEnPosicion(posicion);
+        listaDobleEnlazada.Trabajo libroEliminado = listaDoble.eliminarElementoEnPosicion(posicion);
         if (libroEliminado != null) {
             System.out.println("Libro en la posicion " + posicion + " eliminado correctamente: " + libroEliminado);
         } else {
@@ -325,7 +323,7 @@ public class TestListaDobleLibros {
             }
         }
 
-        Trabajo libroModificado = new Trabajo(nuevoTitulo, nuevoAutor, nuevoAnio);
+        listaDobleEnlazada.Trabajo libroModificado = new listaDobleEnlazada.Trabajo(nuevoTitulo, nuevoAutor, nuevoAnio);
         listaDoble.modificarElementoEnPosicion(posicion, libroModificado);
         System.out.println("Libro modificado correctamente.");
         mostrarLista();
