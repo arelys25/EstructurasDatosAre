@@ -6,12 +6,12 @@ public class Trabajo {
 
     private String titulo;
     private String autor;
-    private int anio;
+    private int isbn;
 
-    public Trabajo(String titulo, String autor, int anio) {
+    public Trabajo(String titulo, String autor, int isbn) {
         this.titulo = titulo;
         this.autor = autor;
-        this.anio = anio;
+        this.isbn = isbn;
     }
 
     public Trabajo(String titulo, String autor) {
@@ -35,12 +35,12 @@ public class Trabajo {
         this.autor = autor;
     }
 
-    public int getAnio() {
-        return anio;
+    public int getIsbn() {
+        return isbn;
     }
 
-    public void setAnio(int anio) {
-        this.anio = anio;
+    public void setIsbn(int isbn) {
+        this.isbn = isbn;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Trabajo {
         return "Trabajo{" +
                 "titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
-                ", anio=" + anio +
+                ", isbn=" + isbn +
                 '}';
     }
 }

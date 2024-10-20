@@ -2,12 +2,14 @@ package recopiladorU2;
 
 import java.awt.event.ActionEvent;
 import colas.*;
+import guiListaCircular.Libro;
 
 import javax.swing.*;
 
 public class JIFColas extends javax.swing.JInternalFrame {
 
-    private ColaProceso cola;
+    private MiColaProceso cola;
+    private Trabajo libro;
 
     /**
      * Creates new form JIFila
@@ -170,22 +172,31 @@ public class JIFColas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la cola primero.");
         }else {
 
-            String sIsbn = JOptionPane.showInputDialog("Titulo:");
+            String sIsbn = txtFIsbn.getText();
+            String sTitulo = txtFTitulo.getText();
+            String sAutor = txtFAutor.getText();
 
-            /*
-            sc.nextLine();
-            System.out.println("Ingrese el titulo: ");
-            titulo = sc.nextLine();
-            System.out.println("ingrese el autor: ");
-            autor = sc.nextLine();
-            System.out.println("Ingresa el codigo del libro");
-            isbn = sc.nextLine();
+            if (sIsbn.isBlank() || sTitulo.isBlank() || sAutor.isBlank()){
+                JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+            } else {
+                try {
+                    int iIsbn = Integer.parseInt(sIsbn);
 
-            // LOS COMENTE PORQUE MODIFIQUE LA CLASE TRABAJO
-            //Trabajo trabajo = new Trabajo(titulo, autor,isbn);
-            //cola.encolar(trabajo);
+                    libro = new Trabajo(sTitulo,sAutor,iIsbn);
+                    cola.encolar(libro);
 
-             */
+                    jTextArea1.setText("Elemento agregado con exito.\n");
+
+
+                    txtFIsbn.setText("");
+                    txtFTitulo.setText("");
+                    txtFAutor.setText("");
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
+                }
+            }
+
         }
     }
 
@@ -197,12 +208,20 @@ public class JIFColas extends javax.swing.JInternalFrame {
 
     }
     private void btnMostrarColaActionPerformed(java.awt.event.ActionEvent evt){
-
+        if(cola == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la cola primero.");
+        }else {
+            mostrarCola();
+        }
     }
     private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt){
 
     }
     private void btnDestruirActionPerformed(java.awt.event.ActionEvent evt){
+
+    }
+
+    public void mostrarCola (){
 
     }
 
