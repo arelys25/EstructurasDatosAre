@@ -184,43 +184,102 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
+        if (listaDoble == null){
+            listaDoble = new ListaDobleLibros();
+            resultTxtA.setText("Lista doble creada con exito.\n");
+        } else {
+            JOptionPane.showMessageDialog(null,"La lista doble ya ha sido creada.");
+        }
     }
 
     private void insertarInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
+        } else {
 
+        }
     }
 
     private void insertarEnPosicionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
 
     private void insertarFinalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void quitarInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void quitarFinalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void quitarEnPosicionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void modificarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void cantidadDeLibrosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void vaciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void destruirInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
     private void mostrarInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if (listaDoble == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
+        } else {
+
+        }
     }
 
 
