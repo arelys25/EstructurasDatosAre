@@ -42,26 +42,29 @@ public class MiColaProceso implements ColaProceso {
         }
     }
 
+
     @Override
-    public Trabajo obtener() {
+    public String obtener() {
         if (cabeza == null) {
-            System.out.println("La cola está vacía o ha sido destruida.");
-            return null;
+            return "La cola está vacía o ha sido destruida.";
         } else {
-            return cabeza.trabajo;
+            return cabeza.trabajo.toString(); // Retorna la representación en cadena de la cabeza
         }
     }
 
     @Override
-    public void mostrarCola() {
+    public String mostrarCola() {
         if (cabeza == null) {
-            System.out.println("No existe cola, ya ha sido borrada o destruida.");
+            return "La cola está vacía.";
         } else {
+            StringBuilder sb = new StringBuilder();
             NodoProceso actual = cabeza;
             while (actual != null) {
-                System.out.println(actual.trabajo);
+                sb.append(actual.trabajo).append(" \n ");
                 actual = actual.siguiente;
             }
+            sb.append(""); // Indica el final de la cola
+            return sb.toString();
         }
     }
 

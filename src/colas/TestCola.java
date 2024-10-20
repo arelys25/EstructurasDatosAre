@@ -54,10 +54,9 @@ public class TestCola {
                     break;
                 case 4:
                     if(cola != null){
-                        Trabajo trabajoCabeza = cola.obtener();
-                        if(trabajoCabeza != null){
-                            System.out.println("Cabeza de la cola" + trabajoCabeza);
-                        }
+
+                        System.out.println("Cabeza de la cola" + cola.obtener());
+
                     }else{
                         System.out.println("la cola no ha sido creada");
                     }

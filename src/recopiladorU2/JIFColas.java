@@ -2,7 +2,6 @@ package recopiladorU2;
 
 import java.awt.event.ActionEvent;
 import colas.*;
-import guiListaCircular.Libro;
 
 import javax.swing.*;
 
@@ -181,12 +180,12 @@ public class JIFColas extends javax.swing.JInternalFrame {
             } else {
                 try {
                     int iIsbn = Integer.parseInt(sIsbn);
+                    jTextArea1.setText("Elemento agregado con exito.\n");
 
                     libro = new Trabajo(sTitulo,sAutor,iIsbn);
                     cola.encolar(libro);
 
-                    jTextArea1.setText("Elemento agregado con exito.\n");
-
+                    mostrarColaJIF();
 
                     txtFIsbn.setText("");
                     txtFTitulo.setText("");
@@ -201,28 +200,50 @@ public class JIFColas extends javax.swing.JInternalFrame {
     }
 
     private void btnDesencolarActionPerformed(java.awt.event.ActionEvent evt) {
-
+        if(cola == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la cola primero.");
+        }else {
+            jTextArea1.setText("Elemnto eliminado con exito.");
+            cola.eliminar();
+            mostrarColaJIF();
+        }
     }
 
     private void btnMostrarCabezaActionPerformed(java.awt.event.ActionEvent evt){
-
+        if(cola == null){
+            JOptionPane.showMessageDialog(null,"Debe crear la cola primero.");
+        }else {
+            jTextArea1.setText("Cabeza de la cola:\n"+cola.obtener());
+        }
     }
     private void btnMostrarColaActionPerformed(java.awt.event.ActionEvent evt){
         if(cola == null){
             JOptionPane.showMessageDialog(null,"Debe crear la cola primero.");
         }else {
-            mostrarCola();
+            mostrarColaJIF();
         }
     }
     private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt){
+        if(cola == null){
+            JOptionPane.showMessageDialog(null,"La cola aun no ha sido creada o ya fue vaciada/destruida.");
+        }else {
+            cola.vaciarCola();
+            jTextArea1.setText("Cola vaciada correctamente.");
+        }
 
     }
     private void btnDestruirActionPerformed(java.awt.event.ActionEvent evt){
-
+        if(cola == null){
+            JOptionPane.showMessageDialog(null,"La cola aun no ha sido creada o ya fue vaciada/destruida.");
+        }else {
+            cola.destruirCola();
+            jTextArea1.setText("Cola destruida correctamente.");
+        }
     }
 
-    public void mostrarCola (){
+    public void mostrarColaJIF(){
 
+        jTextArea1.setText("\nCola:\n"+cola.mostrarCola());
     }
 
 

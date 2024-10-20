@@ -8,9 +8,9 @@ public interface ColaProceso {
 
     void eliminar ();
 
-    Trabajo obtener ();
+    String obtener ();
 
-    void mostrarCola();
+    String mostrarCola();
 
     void  vaciarCola ();
 
