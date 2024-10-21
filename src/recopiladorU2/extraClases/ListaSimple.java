@@ -1,80 +1,75 @@
 package recopiladorU2.extraClases;
-import listas.Nodo;
-import colas.Trabajo;
-public class ListaSimple {
-    private Nodo inicio,aux;
-    private int cantidad;
-    private boolean vacia;
 
-    // constructor vacio
-    public ListaSimple () {
-        // establecer los valores iniciales (por default)
-        vacia = true;
+public class ListaSimple {
+    private Nodo inicio;
+    private Nodo aux;
+    private int cantidad;
+
+    // Constructor vacío
+    public ListaSimple() {
+        inicio = null;
         cantidad = 0;
     }
 
-    // METODOS
+    // Métodos
 
-    public boolean agregar (Trabajo libro){
+    public boolean agregar(Trabajo libro) {
         Nodo nuevo = new Nodo(libro);
-        if (inicio == null) { // cuando esta vacia la lista
+        if (inicio == null) { // Cuando está vacía la lista
             inicio = nuevo;
-            cantidad ++;
+            cantidad++;
             return true;
-        } else { // cuando ya hay elementos en la lista
-            // recorrido de nodos
+        } else { // Cuando ya hay elementos en la lista
             aux = inicio;
-            while (aux.siguiente != null){
+            while (aux.siguiente != null) {
                 aux = aux.siguiente;
             }
-
             aux.siguiente = nuevo;
-            cantidad ++;
+            cantidad++;
             return true;
         }
-        // return false;
     }
 
-    public boolean agregarEnPosicion (Trabajo libro, int posicion) {
+    public boolean agregarEnPosicion(Trabajo libro, int posicion) {
         Nodo nuevo = new Nodo(libro);
 
-        // si la lista esta vacia y el usuario quiere agregar en la posicion 1
-        if (inicio == null && posicion == 0){
+        // Si la lista está vacía y el usuario quiere agregar en la posición 0
+        if (inicio == null && posicion == 0) {
             inicio = nuevo;
-            cantidad ++;
-            return true; // se sale del metodo
+            cantidad++;
+            return true;
         }
 
-        // agregar al inicio en caso de que no este vacia la fila
-        if (posicion == 0){
+        // Agregar al inicio en caso de que no esté vacía la lista
+        if (posicion == 0) {
             nuevo.siguiente = inicio;
             inicio = nuevo;
-            cantidad ++;
-            return true; // sale del metodo
+            cantidad++;
+            return true;
         }
 
         aux = inicio;
         int contador = 0;
 
-        // buscar el lugar que introdujo el usuario
-        while (aux != null && contador < posicion -1) {
+        // Buscar el lugar que introdujo el usuario
+        while (aux != null && contador < posicion - 1) {
             aux = aux.siguiente;
             contador++;
         }
 
-        // si encontramos el lugar que pidio el usuario y esta vacio, crearemos el objeto
-        if (aux != null){
+        // Si encontramos el lugar que pidió el usuario
+        if (aux != null) {
             nuevo.siguiente = aux.siguiente;
             aux.siguiente = nuevo;
-            cantidad ++;
+            cantidad++;
             return true;
         }
 
-        // si la posicion es mayor que la longitud de la lista actual, no se podra agregar
+        // Si la posición es mayor que la longitud de la lista actual, no se podrá agregar
         return false;
     }
 
-    public Trabajo quitar (){ // quita el ultimo elemento de la fila
+    public Trabajo quitar() { // Quita el último elemento de la lista
         if (inicio == null) { // La lista está vacía
             return null;
         }
@@ -88,25 +83,24 @@ public class ListaSimple {
 
         // Si hay más de un elemento
         aux = inicio;
-        while (aux.siguiente.siguiente != null) { // Encontrar el penultimo nodo
+        while (aux.siguiente.siguiente != null) { // Encontrar el penúltimo nodo
             aux = aux.siguiente;
         }
 
-        Trabajo libro = aux.siguiente.dato; // El ultimo libro
+        Trabajo libro = aux.siguiente.dato; // El último libro
         aux.siguiente = null; // Eliminar el último nodo
         cantidad--;
         return libro;
-
     }
 
-    public String mostrarLibros (){
+    public String mostrarLibros() {
         aux = inicio;
-        String libros = "";
-        while (aux != null){
-            libros += aux.dato+"\n";
+        StringBuilder libros = new StringBuilder();
+        while (aux != null) {
+            libros.append(aux.dato.toString()).append("\n"); // Usa el toString() de Trabajo
             aux = aux.siguiente;
         }
-        return libros;
+        return libros.toString();
     }
 
     public Trabajo quitarEnPosicion(int posicion) {
@@ -140,12 +134,13 @@ public class ListaSimple {
         return libro; // Retornar el libro eliminado
     }
 
-    public void vaciar (){
+    public void vaciar() {
         inicio = null; // Reiniciar el inicio para vaciar la lista
         cantidad = 0; // Establecer la cantidad a 0
         System.out.println("Lista vaciada\n");
     }
-    // Método para insertar al final (insertarFinal)
+
+    // Método para insertar al final
     public void insertarFinal(Trabajo libro) {
         Nodo nuevo = new Nodo(libro);
         if (inicio == null) { // Si la lista está vacía
@@ -160,12 +155,16 @@ public class ListaSimple {
         cantidad++;
     }
 
-    public int getCantidad(){
+    public int getCantidad() {
         return cantidad;
     }
 
-    public boolean estaVacia(){
-        return false;
+    public boolean estaVacia() {
+        return cantidad == 0; // Retorna si la lista está vacía
     }
 
+    @Override
+    public String toString() {
+        return mostrarLibros(); // Usa el método mostrarLibros para la representación de la lista
+    }
 }

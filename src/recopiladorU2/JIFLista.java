@@ -1,20 +1,22 @@
 package recopiladorU2;
 
-
-import colas.Trabajo;
 import recopiladorU2.extraClases.ListaSimple;
+import recopiladorU2.extraClases.Trabajo;
 
 import javax.swing.JOptionPane;
-
+/**
+ *
+ * @author Achelin
+ */
 public class JIFLista extends javax.swing.JInternalFrame {
-    private recopiladorU2.extraClases.ListaSimple lista;
+    private ListaSimple lista;
     private int contBoton;
     /**
      * Creates new form JIFLista
      */
     public JIFLista() {
         initComponents();
-        lista = new recopiladorU2.extraClases.ListaSimple();
+        lista = new ListaSimple();
     }
 
     /**
@@ -47,11 +49,9 @@ public class JIFLista extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -147,20 +147,11 @@ public class JIFLista extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextField4.setPreferredSize(new java.awt.Dimension(150, 22));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
+        jLabel9.setText("");
 
-        jLabel9.setText("jLabel9");
+        jLabel10.setText("");
 
-        jLabel10.setText("jLabel10");
-
-        jLabel11.setText("jLabel11");
-
-        jLabel12.setText("jLabel12");
+        jLabel11.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,7 +196,6 @@ public class JIFLista extends javax.swing.JInternalFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(jLabel9)
                                                         .addComponent(jLabel11)
-                                                        .addComponent(jLabel12)
                                                         .addComponent(jLabel10))
                                                 .addGap(27, 27, 27)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,8 +204,7 @@ public class JIFLista extends javax.swing.JInternalFrame {
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addGap(130, 130, 130)
-                                                                .addComponent(jButton8))
-                                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                                .addComponent(jButton8)))))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -269,11 +258,7 @@ public class JIFLista extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel12))
-                                .addContainerGap(30, Short.MAX_VALUE))
+                                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -282,8 +267,7 @@ public class JIFLista extends javax.swing.JInternalFrame {
     private void limpiarField(){
         jTextField1.setText("");
         jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
+
     }
 
     private void crearLista() {
@@ -294,23 +278,26 @@ public class JIFLista extends javax.swing.JInternalFrame {
         jLabel9.setText("TITULO: ");
         jLabel10.setText("AUTOR: ");
         jLabel11.setText("");
-        jLabel12.setText("");
 
-        if(contBoton >=2){
-            String titulo = jTextField1.getText();
-            String autor = jTextField2.getText();
-            Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
-            lista.insertarFinal(nuevoTrabajo);
-            JOptionPane.showMessageDialog(this, "Libro agregado al final.");
-            limpiarField();
+
+        String titulo = jTextField1.getText();
+        String autor = jTextField2.getText();
+        if (titulo.isEmpty() || autor.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un título y un autor.");
+            return;
         }
+
+        Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
+        lista.insertarFinal(nuevoTrabajo);
+        JOptionPane.showMessageDialog(this, "Libro agregado al final.");
+        limpiarField();
     }
     private void agregarPosicion() {
 
         jLabel9.setText("TITULO: ");
         jLabel10.setText("AUTOR: ");
         jLabel11.setText("posicion: ");
-        jLabel12.setText("");
+
         if(contBoton >=2){
             String titulo = jTextField1.getText();
             String autor = jTextField2.getText();
@@ -329,7 +316,7 @@ public class JIFLista extends javax.swing.JInternalFrame {
         jLabel9.setText("posicion: ");
         jLabel10.setText("");
         jLabel11.setText("");
-        jLabel12.setText("");
+
         int posicion = Integer.parseInt(jTextField1.getText());
         lista.quitarEnPosicion(posicion);
         JOptionPane.showMessageDialog(this, "Libro en la posición " + posicion + " eliminado.");
@@ -347,20 +334,16 @@ public class JIFLista extends javax.swing.JInternalFrame {
     }
     // Método para mostrar la lista de trabajos
     private void mostrarLista() {
-        jTextArea1.setText(lista.toString());
+        if (lista == null) {
+            jTextArea1.setText("La lista está vacía.");
+        } else {
+            jTextArea1.setText(lista.toString());
+        }
     }
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         eliminarPosicion();
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         crearLista();
@@ -391,6 +374,10 @@ public class JIFLista extends javax.swing.JInternalFrame {
         destruirLista();
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -404,7 +391,6 @@ public class JIFLista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -418,6 +404,5 @@ public class JIFLista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

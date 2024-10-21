@@ -116,13 +116,13 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setText("");
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("");
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setText("");
 
-        jLabel9.setText("jLabel9");
+        jLabel9.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,6 +254,7 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
                 jTextArea1.setText(jTextArea1.getText() + "Vehículo asignado: " + nuevoVehiculo.toString() + "\n");
                 limpiarCampos();
                 contadorBoton = 0;
+                contadorVehiculos ++;
             }
         } else {
             jTextArea1.setText(jTextArea1.getText() + "No hay más espacio en el arreglo para nuevos vehículos.\n");
@@ -329,6 +330,7 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
                 if (pos >= 0 && pos < contadorVehiculos && vehiculos[pos] != null) {
                     vehiculos[pos] = null;
                     jTextArea1.append("Vehículo retirado de la posición " + pos + ".\n");
+                    contadorVehiculos--;
                 } else {
                     jTextArea1.append("Posición no válida o ya vacía.\n");
                 }
