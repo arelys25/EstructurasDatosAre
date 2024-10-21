@@ -247,7 +247,7 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
                 String modelo = jTextField4.getText();
                 String anio = jTextField5.getText();
 
-                Vehiculo nuevoVehiculo = new Vehiculo(matricula, marca, anio);
+                Vehiculo nuevoVehiculo = new Vehiculo(matricula, marca, anio,modelo,"Predeterminado");
                 vehiculos[contadorVehiculos] = nuevoVehiculo;
                 contadorVehiculos++;
 

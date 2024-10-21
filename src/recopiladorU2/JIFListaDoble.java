@@ -433,7 +433,7 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
-            listaDoble = null;
+            listaDoble.vaciarLista();
             resultTxtA.setText("Lista doble vaciada correctamente.");
         }
     }

@@ -433,7 +433,7 @@ public class JIFListaCircular extends javax.swing.JInternalFrame {
                     int iIsbn = Integer.parseInt(sIsbn);
                     int iPosicion = Integer.parseInt(sPosicion);
 
-                    if (iPosicion > listaDobleCircular.getCantidad() || iPosicion < 0){
+                    if (iPosicion > disponibles || iPosicion < 0){
                         JOptionPane.showMessageDialog(null,"Posicion invalida.");
                     } else {
                         libro = new Libro(stitulo,sAutor,iIsbn);
