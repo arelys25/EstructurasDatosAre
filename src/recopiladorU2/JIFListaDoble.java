@@ -1,5 +1,6 @@
 package recopiladorU2;
 
+import guiListaCircular.Libro;
 import listaDobleEnlazada.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,11 +17,11 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        isbnField = new JTextField();
+        anioField = new JTextField();
         tituloField = new JTextField();
         autorField = new JTextField();
         posicionField = new JTextField();
-        isbnLabel = new JLabel("ISBN:");
+        anioLabel = new JLabel("AÑO:");
         tituloLabel = new JLabel("TITULO:");
         autorLabel = new JLabel("AUTOR:");
         posicionLabel = new JLabel("POSICION:");
@@ -123,7 +124,7 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
         mostrarButton.addActionListener(new java.awt.event.ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                mostrarInicioButtonActionPerformed(e);
+                mostrarButtonActionPerformed(e);
             }
         });
 
@@ -131,8 +132,8 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
 
         // posiciones de los componentes
         // posicion en x, en y, largo y ancho del componente
-        isbnLabel.setBounds(50,30,150,25);
-        isbnField.setBounds(100,30,250,25);
+        anioLabel.setBounds(50,30,150,25);
+        anioField.setBounds(100,30,250,25);
         tituloLabel.setBounds(40,65,150,25);
         tituloField.setBounds(100,65,250,25);
         autorLabel.setBounds(40,100,150,25);
@@ -157,8 +158,8 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
 
 
         // añadir componentes al panel
-        add(isbnLabel);
-        add(isbnField);
+        add(anioLabel);
+        add(anioField);
         add(tituloLabel);
         add(tituloField);
         add(autorLabel);
@@ -196,7 +197,30 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
         if (listaDoble == null){
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
         } else {
+            String sAnio = anioField.getText();
+            String stitulo = tituloField.getText();
+            String sAutor = autorField.getText();
 
+            if (sAnio.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
+                JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+            } else {
+                try {
+                    int iAnio = Integer.parseInt(sAnio);
+
+                    libro = new Trabajo(stitulo,sAutor,iAnio);
+
+                    listaDoble.agregarAlInicio(libro);
+
+                    resultTxtA.setText("Elemento agregado con exito.\n"+listaDoble.mostrarLibros());
+
+                    anioField.setText("");
+                    tituloField.setText("");
+                    autorField.setText("");
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null,"Error. Año invalido");
+                }
+            }
         }
     }
 
@@ -205,7 +229,48 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
+            add(posicionField);
+            add(posicionLabel);
 
+            revalidate();
+            repaint();
+
+            resultTxtA.setText("Posiciones disponibles: Del 0 al "+listaDoble.getCantidad());
+
+            String sAnio = anioField.getText();
+            String stitulo = tituloField.getText();
+            String sAutor = autorField.getText();
+            String sPosicion = posicionField.getText();
+
+            if (sAnio.trim().isBlank() || stitulo.isBlank() || sAutor.isBlank() || sPosicion.trim().isBlank()){
+                JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+            } else {
+                try {
+                    int iAnio = Integer.parseInt(sAnio);
+                    int iPosicion = Integer.parseInt(sPosicion);
+
+                    if (iPosicion > listaDoble.getCantidad() || iPosicion < 0){
+                        JOptionPane.showMessageDialog(null,"Posicion invalida.");
+                    } else {
+                        libro = new Trabajo(stitulo,sAutor,iAnio);
+
+                        listaDoble.agregarPuntoEspecifico(libro,iPosicion);
+
+                        resultTxtA.setText("Elemento agregado con exito.\n"+listaDoble.mostrarLibros());
+
+                        anioField.setText("");
+                        tituloField.setText("");
+                        autorField.setText("");
+                        posicionField.setText("");
+                        remove(posicionLabel);
+                        remove(posicionField);
+                    }
+
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null,"Error. Año invalido o posicion invalida.");
+                }
+            }
         }
     }
 
@@ -214,7 +279,30 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
+            String sAnio = anioField.getText();
+            String stitulo = tituloField.getText();
+            String sAutor = autorField.getText();
 
+            if (sAnio.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
+                JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+            } else {
+                try {
+                    int iAnio = Integer.parseInt(sAnio);
+
+                    libro = new Trabajo(stitulo,sAutor,iAnio);
+
+                    listaDoble.agregarAlFinal(libro);
+
+                    resultTxtA.setText("Elemento agregado con exito.\n"+listaDoble.mostrarLibros());
+
+                    anioField.setText("");
+                    tituloField.setText("");
+                    autorField.setText("");
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null,"Error. Año invalido");
+                }
+            }
         }
     }
     private void quitarInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -222,6 +310,9 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
+            listaDoble.eliminarElementoDelInicio();
+
+            resultTxtA.setText("Elemento eliminado correctamente.\n\nElementos restantes:\n"+listaDoble.mostrarLibros());
 
         }
     }
@@ -230,7 +321,8 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
-
+            listaDoble.eliminarElementoFinal();
+            resultTxtA.setText("Elemento eliminado correctamente.\n\nElementos restantes:\n"+listaDoble.mostrarLibros());
         }
     }
     private void quitarEnPosicionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -238,6 +330,44 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
+            add(posicionField);
+            add(posicionLabel);
+
+            revalidate();
+            repaint();
+
+            int disponibles = listaDoble.getCantidad() -1;
+            resultTxtA.setText("Posiciones disponibles para quitar: Del 0 al "+disponibles);
+
+            String sPosicion = posicionField.getText();
+
+            if (sPosicion.trim().isBlank()){
+                JOptionPane.showMessageDialog(null,"Error. El espacio de posicion NO debe quedar en blanco.");
+            } else {
+                try {
+                    int iPosicion = Integer.parseInt(sPosicion);
+
+                    if (iPosicion > listaDoble.getCantidad() || iPosicion < 0){
+                        JOptionPane.showMessageDialog(null,"Posicion invalida.");
+                    } else {
+
+                        listaDoble.eliminarElementoEnPosicion(iPosicion);
+
+                        resultTxtA.setText("Elemento eliminado con exito.\n"+listaDoble.mostrarLibros());
+
+                        anioField.setText("");
+                        tituloField.setText("");
+                        autorField.setText("");
+                        posicionField.setText("");
+                        remove(posicionLabel);
+                        remove(posicionField);
+                    }
+
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null,"Error. Año invalido o posicion invalida.");
+                }
+            }
 
         }
     }
@@ -246,7 +376,49 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
+            add(posicionField);
+            add(posicionLabel);
 
+            revalidate();
+            repaint();
+
+            int disponibles = listaDoble.getCantidad() -1;
+            resultTxtA.setText("Posiciones disponibles para modificar: Del 0 al "+disponibles);
+
+            String sAnio = anioField.getText();
+            String stitulo = tituloField.getText();
+            String sAutor = autorField.getText();
+            String sPosicion = posicionField.getText();
+
+            if (sAnio.trim().isBlank() || stitulo.isBlank() || sAutor.isBlank() || sPosicion.trim().isBlank()){
+                JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+            } else {
+                try {
+                    int iAnio = Integer.parseInt(sAnio);
+                    int iPosicion = Integer.parseInt(sPosicion);
+
+                    if (iPosicion > listaDoble.getCantidad() || iPosicion < 0){
+                        JOptionPane.showMessageDialog(null,"Posicion invalida.");
+                    } else {
+                        libro = new Trabajo(stitulo,sAutor,iAnio);
+
+                        listaDoble.modificarElementoEnPosicion(iPosicion,libro);
+
+                        resultTxtA.setText("Elemento modificado con exito.\n"+listaDoble.mostrarLibros());
+
+                        anioField.setText("");
+                        tituloField.setText("");
+                        autorField.setText("");
+                        posicionField.setText("");
+                        remove(posicionLabel);
+                        remove(posicionField);
+                    }
+
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null,"Error. Año invalido o posicion invalida.");
+                }
+            }
         }
     }
     private void cantidadDeLibrosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -254,7 +426,7 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
-
+            resultTxtA.setText("Cantidad de libros: "+listaDoble.getCantidad());
         }
     }
     private void vaciarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -262,7 +434,8 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
-
+            listaDoble = null;
+            resultTxtA.setText("Lista doble vaciada correctamente.");
         }
     }
     private void destruirInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -270,25 +443,26 @@ public class JIFListaDoble extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
-
+            listaDoble = null;
+            resultTxtA.setText("Lista doble vaciada correctamente.");
         }
     }
-    private void mostrarInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void mostrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         if (listaDoble == null){
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         } else {
-
+            resultTxtA.setText(listaDoble.mostrarLibros());
         }
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
-    private JTextField isbnField;
+    private JTextField anioField;
     private JTextField tituloField;
     private JTextField autorField;
-    private JLabel isbnLabel;
+    private JLabel anioLabel;
     private JLabel tituloLabel;
     private JLabel autorLabel;
     private JTextArea resultTxtA;

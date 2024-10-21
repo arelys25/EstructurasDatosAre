@@ -134,14 +134,14 @@ public class ListaDobleLibros {
 
         Trabajo libro = fin.dato; // Guarda el dato del nodo a eliminar
 
-        if (inicio == fin) { // Solo hay un elemento en la lista
-            inicio = fin = null; // La lista queda vacía
+        if (inicio == fin) { // Solo un elemento en la lista
+            inicio = fin = null;
         } else {
             fin = fin.anterior; // Mueve el puntero `fin` al nodo anterior
-            fin.siguiente = null; // El nuevo `fin` ahora no tiene siguiente
+            fin.siguiente = null; // Elimina referencia al siguiente
         }
 
-        cantidad--; // Disminuye la cantidad de elementos
+        cantidad--; // Reduce el número de elementos
         return libro; // Retorna el libro eliminado
     }
 
@@ -154,23 +154,36 @@ public class ListaDobleLibros {
             return null; // Posición inválida
         }
 
+        Nodo actual = inicio; // Comenzamos desde el inicio
+
+        // Si eliminamos el primer nodo
         if (posicion == 0) {
             return eliminarElementoDelInicio();
-        } else if (posicion == cantidad - 1) {
-            return eliminarElementoFinal();
-        } else {
-            aux = inicio;
-            for (int i = 0; i < posicion; i++) {
-                aux = aux.siguiente;
-            }
-            Trabajo libro = aux.dato;
-            aux.anterior.siguiente = aux.siguiente;
-            if (aux.siguiente != null) {
-                aux.siguiente.anterior = aux.anterior;
-            }
-            cantidad--;
-            return libro;
         }
+
+        // Si eliminamos el último nodo
+        if (posicion == cantidad - 1) {
+            return eliminarElementoFinal();
+        }
+
+        // Recorremos la lista hasta la posición deseada
+        for (int i = 0; i < posicion; i++) {
+            actual = actual.siguiente;
+        }
+
+        // Guardamos el dato a eliminar
+        Trabajo libro = actual.dato;
+
+        // Ajustamos las referencias de los nodos adyacentes
+        if (actual.anterior != null) {
+            actual.anterior.siguiente = actual.siguiente;
+        }
+        if (actual.siguiente != null) {
+            actual.siguiente.anterior = actual.anterior;
+        }
+
+        cantidad--; // Disminuye la cantidad de elementos
+        return libro; // Retorna el libro eliminado
     }
     public void modificarElementoEnPosicion(int posicion, Trabajo nuevoTrabajo) {
         if (posicion < 0 || posicion >= cantidad) {
