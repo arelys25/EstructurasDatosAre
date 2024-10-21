@@ -40,7 +40,8 @@ public class Principal extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        btn_arreglo.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\array_icon.png")); // NOI18N
+        btn_arreglo.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\arreglo.png"));
+        //btn_arreglo.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\array_icon.png")); // NOI18N
         btn_arreglo.setText("Arreglo");
         btn_arreglo.setFocusable(false);
         btn_arreglo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -52,7 +53,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_arreglo);
 
-        btn_cola.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\fila.png")); // NOI18N
+        btn_cola.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\fila.png")); // NOI18N
         btn_cola.setText("Cola");
         btn_cola.setFocusable(false);
         btn_cola.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -65,7 +66,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_cola);
 
-        btn_pila.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\pila.png")); // NOI18N
+        btn_pila.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\pila.png")); // NOI18N
         btn_pila.setText("Pila");
         btn_pila.setToolTipText("");
         btn_pila.setFocusable(false);
@@ -78,7 +79,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_pila);
 
-        btn_simple.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\lista simple.png")); // NOI18N
+        btn_simple.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\listaSimple.png")); // NOI18N
         btn_simple.setText("Lista Simple");
         btn_simple.setFocusable(false);
         btn_simple.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -90,7 +91,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_simple);
 
-        btn_doble.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\lista doble.png")); // NOI18N
+        btn_doble.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\listaDoble.png")); // NOI18N
         btn_doble.setText("Lista Doble");
         btn_doble.setFocusable(false);
         btn_doble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -102,7 +103,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_doble);
 
-        btn_circular.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\lista circular.png")); // NOI18N
+        btn_circular.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\listaCircular.png")); // NOI18N
         btn_circular.setText("Lista Circular");
         btn_circular.setFocusable(false);
         btn_circular.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
