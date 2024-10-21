@@ -164,8 +164,15 @@ public class ListaDobleCircular {
 
     // Método para obtener el libro anterior en la lista
     public Libro anteriorFuncion() {
-        if (fin == null) return null;
-        return fin.dato;
+        if (estaVacia()) return null;
+
+        if (actual == null) {
+            actual = inicio;
+        } else {
+            actual = actual.anterior;
+        }
+
+        return actual.dato;
     }
 
     // Método para obtener el último libro

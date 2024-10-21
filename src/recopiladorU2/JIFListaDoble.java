@@ -1,6 +1,5 @@
 package recopiladorU2;
 
-import guiListaCircular.Libro;
 import listaDobleEnlazada.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
