@@ -2,6 +2,8 @@ package recopiladorU2;
 
 import clases.*;
 
+import javax.swing.*;
+
 public class JIFArreglo extends javax.swing.JInternalFrame {
     private Vehiculo[] vehiculos;
     private int contadorVehiculos;
@@ -228,119 +230,144 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
     }
 
     private void abrirEstacionamiento() {
-        // Inicializa el array de vehículos con un tamaño específico
-        vehiculos = new Vehiculo[10]; // Puedes ajustar el tamaño según lo necesites
-        contadorVehiculos = 0; // Reinicia el contador
-        jTextArea1.append("Estacionamiento abierto. Listo para asignar vehículos.\n");
+        if (vehiculos == null){
+            // Inicializa el array de vehículos con un tamaño específico
+            vehiculos = new Vehiculo[10]; // Puedes ajustar el tamaño según lo necesites
+            contadorVehiculos = 0; // Reinicia el contador
+            jTextArea1.append("Estacionamiento abierto. Listo para asignar vehículos.\n");
+        } else {
+            JOptionPane.showMessageDialog(null,"El estacionamiento ya esta abierto.");
+
+        }
+
     }
 
     private void asignarVehiculo() {
-        if (contadorVehiculos < vehiculos.length) {
-            limpiarLabel();
-
-            jLabel6.setText("matricula: ");
-            jLabel7.setText("marca: ");
-            jLabel8.setText("modelo: ");
-            jLabel9.setText("anio: ");
-
-            if(contadorBoton >= 2){
-                String matricula = jTextField2.getText();
-                String marca = jTextField3.getText();
-                String modelo = jTextField4.getText();
-                String anio = jTextField5.getText();
-
-                Vehiculo nuevoVehiculo = new Vehiculo(matricula, marca, anio, modelo,"predeterminado");
-                vehiculos[contadorVehiculos] = nuevoVehiculo;
-                contadorVehiculos++;
-
-                jTextArea1.setText(jTextArea1.getText() + "Vehículo asignado: " + nuevoVehiculo.toString() + "\n");
-                limpiarCampos();
-                contadorBoton = 0;
-            }
+        if (vehiculos == null){
+            JOptionPane.showMessageDialog(null,"Debe abrir el estacionamiento primero.");
         } else {
-            jTextArea1.setText(jTextArea1.getText() + "No hay más espacio en el arreglo para nuevos vehículos.\n");
-        }
-    }
-    private void moverVehiculo() {
-        try {
-            jLabel6.setText("posicion actual: ");
-            jLabel7.setText("nueva posicion");
-            jLabel8.setText("");
-            jLabel9.setText("");
+            if (contadorVehiculos < vehiculos.length) {
+                limpiarLabel();
 
-            int posActual = Integer.parseInt(jTextField2.getText());
-            int nuevaPos = Integer.parseInt(jTextField3.getText());
+                jLabel6.setText("matricula: ");
+                jLabel7.setText("marca: ");
+                jLabel8.setText("modelo: ");
+                jLabel9.setText("anio: ");
 
+                if(contadorBoton >= 2){
+                    String matricula = jTextField2.getText();
+                    String marca = jTextField3.getText();
+                    String modelo = jTextField4.getText();
+                    String anio = jTextField5.getText();
 
-            if (posActual >= 0 && posActual < contadorVehiculos && nuevaPos >= 0 && nuevaPos < vehiculos.length) {
-                Vehiculo temp = vehiculos[posActual];
-                vehiculos[posActual] = null;
+                    Vehiculo nuevoVehiculo = new Vehiculo(matricula, marca, anio, modelo,"predeterminado");
+                    vehiculos[contadorVehiculos] = nuevoVehiculo;
+                    contadorVehiculos++;
 
-                if (vehiculos[nuevaPos] == null) {
-                    vehiculos[nuevaPos] = temp;
-                    jTextArea1.append("Vehículo movido de posición " + posActual + " a " + nuevaPos + ".\n");
-                } else {
-                    jTextArea1.append("El lugar destino ya está ocupado.\n");
+                    jTextArea1.setText(jTextArea1.getText() + "Vehículo asignado: " + nuevoVehiculo.toString() + "\n");
+                    limpiarCampos();
+                    contadorBoton = 0;
                 }
             } else {
-                jTextArea1.append("Posición no válida.\n");
+                jTextArea1.setText(jTextArea1.getText() + "No hay más espacio en el arreglo para nuevos vehículos.\n");
             }
-
-            limpiarCampos();
-        } catch (NumberFormatException e) {
-            jTextArea1.append("Por favor, ingrese posiciones válidas.\n");
         }
+
+    }
+    private void moverVehiculo() {
+        if (vehiculos == null){
+            JOptionPane.showMessageDialog(null,"Debe abrir el estacionamiento primero.");
+        } else {
+            try {
+                jLabel6.setText("posicion actual: ");
+                jLabel7.setText("nueva posicion");
+                jLabel8.setText("");
+                jLabel9.setText("");
+
+                int posActual = Integer.parseInt(jTextField2.getText());
+                int nuevaPos = Integer.parseInt(jTextField3.getText());
+
+
+                if (posActual >= 0 && posActual < contadorVehiculos && nuevaPos >= 0 && nuevaPos < vehiculos.length) {
+                    Vehiculo temp = vehiculos[posActual];
+                    vehiculos[posActual] = null;
+
+                    if (vehiculos[nuevaPos] == null) {
+                        vehiculos[nuevaPos] = temp;
+                        jTextArea1.append("Vehículo movido de posición " + posActual + " a " + nuevaPos + ".\n");
+                    } else {
+                        jTextArea1.append("El lugar destino ya está ocupado.\n");
+                    }
+                } else {
+                    jTextArea1.append("Posición no válida.\n");
+                }
+
+                limpiarCampos();
+            } catch (NumberFormatException e) {
+                jTextArea1.append("Por favor, ingrese posiciones válidas.\n");
+            }
+        }
+
     }
 
     private void cambiarDatosVehiculo() {
-        try {
-            limpiarLabel();
-            jLabel6.setText("posicion: ");
-            jLabel7.setText("marca: ");
-            jLabel8.setText("modelo: ");
-            jLabel9.setText("anio: ");
-            int pos = Integer.parseInt(jTextField2.getText());
-            if (pos >= 0 && pos <= contadorVehiculos && vehiculos[pos] != null) {
-                String nuevaMarca = jTextField3.getText();
-                String nuevoAnio = jTextField5.getText();
-                String nuevoModelo = jTextField4.getText();
-
-                vehiculos[pos].setMarca(nuevaMarca);
-                vehiculos[pos].setAnio(nuevoAnio);
-                vehiculos[pos].setModelo(nuevoModelo);
-
-                jTextArea1.append("Datos del vehículo en la posición " + pos + " actualizados.\n");
-                jTextArea1.append("Información actualizada del vehículo: " + vehiculos[pos].toString() + "\n");
-            } else {
-                jTextArea1.append("Posición no válida o vacía.\n");
-            }
-            limpiarCampos();
-        } catch (NumberFormatException e) {
-            jTextArea1.append("Por favor, ingrese una posición válida.\n");
-        }
-    }
-
-    private void retirarVehiculo() {
-        limpiarLabel();
-        jLabel6.setText("posicion: ");
-        jLabel9.setText("");
-        if(contadorBoton >= 2){
-            contadorBoton = 0;
+        if (vehiculos == null){
+            JOptionPane.showMessageDialog(null,"Debe abrir el estacionamiento primero.");
+        } else {
             try {
+                limpiarLabel();
+                jLabel6.setText("posicion: ");
+                jLabel7.setText("marca: ");
+                jLabel8.setText("modelo: ");
+                jLabel9.setText("anio: ");
                 int pos = Integer.parseInt(jTextField2.getText());
                 if (pos >= 0 && pos <= contadorVehiculos && vehiculos[pos] != null) {
-                    vehiculos[pos] = null;
-                    jTextArea1.append("Vehículo retirado de la posición " + pos + ".\n");
-                    contadorVehiculos --;
+                    String nuevaMarca = jTextField3.getText();
+                    String nuevoAnio = jTextField5.getText();
+                    String nuevoModelo = jTextField4.getText();
+
+                    vehiculos[pos].setMarca(nuevaMarca);
+                    vehiculos[pos].setAnio(nuevoAnio);
+                    vehiculos[pos].setModelo(nuevoModelo);
+
+                    jTextArea1.append("Datos del vehículo en la posición " + pos + " actualizados.\n");
+                    jTextArea1.append("Información actualizada del vehículo: " + vehiculos[pos].toString() + "\n");
                 } else {
-                    jTextArea1.append("Posición no válida o ya vacía.\n");
+                    jTextArea1.append("Posición no válida o vacía.\n");
                 }
                 limpiarCampos();
             } catch (NumberFormatException e) {
                 jTextArea1.append("Por favor, ingrese una posición válida.\n");
-
             }
         }
+    }
+
+    private void retirarVehiculo() {
+        if (vehiculos == null){
+            JOptionPane.showMessageDialog(null,"Debe abrir el estacionamiento primero.");
+        } else {
+            limpiarLabel();
+            jLabel6.setText("posicion: ");
+            jLabel9.setText("");
+            if(contadorBoton >= 2){
+                contadorBoton = 0;
+                try {
+                    int pos = Integer.parseInt(jTextField2.getText());
+                    if (pos >= 0 && pos <= contadorVehiculos && vehiculos[pos] != null) {
+                        vehiculos[pos] = null;
+                        jTextArea1.append("Vehículo retirado de la posición " + pos + ".\n");
+                        contadorVehiculos --;
+                    } else {
+                        jTextArea1.append("Posición no válida o ya vacía.\n");
+                    }
+                    limpiarCampos();
+                } catch (NumberFormatException e) {
+                    jTextArea1.append("Por favor, ingrese una posición válida.\n");
+
+                }
+            }
+        }
+
     }
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
