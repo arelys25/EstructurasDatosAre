@@ -4,10 +4,6 @@ import recopiladorU2.extraClases.ListaSimple;
 import recopiladorU2.extraClases.Trabajo;
 
 import javax.swing.JOptionPane;
-/**
- *
- * @author Achelin
- */
 public class JIFLista extends javax.swing.JInternalFrame {
     private ListaSimple lista;
     private int contBoton;
@@ -267,6 +263,7 @@ public class JIFLista extends javax.swing.JInternalFrame {
     private void limpiarField(){
         jTextField1.setText("");
         jTextField2.setText("");
+        jTextField3.setText("");
 
     }
 
@@ -301,11 +298,16 @@ public class JIFLista extends javax.swing.JInternalFrame {
         if(contBoton >=2){
             String titulo = jTextField1.getText();
             String autor = jTextField2.getText();
-            int posicion = Integer.parseInt(jTextField3.getText());
-            Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
-            lista.agregarEnPosicion(nuevoTrabajo, posicion);
-            JOptionPane.showMessageDialog(this, "Libro agregado en la posición " + posicion);
-            limpiarField();
+            try{
+                int posicion = Integer.parseInt(jTextField3.getText());
+                Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
+                lista.agregarEnPosicion(nuevoTrabajo, posicion);
+                JOptionPane.showMessageDialog(this, "Libro agregado en la posición " + posicion);
+                limpiarField();
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(this, "agrega una posicion valida","Error", JOptionPane.ERROR_MESSAGE );
+            }
+
         }
     }
     private void eliminarFin() {
@@ -316,10 +318,13 @@ public class JIFLista extends javax.swing.JInternalFrame {
         jLabel9.setText("posicion: ");
         jLabel10.setText("");
         jLabel11.setText("");
-
-        int posicion = Integer.parseInt(jTextField1.getText());
-        lista.quitarEnPosicion(posicion);
-        JOptionPane.showMessageDialog(this, "Libro en la posición " + posicion + " eliminado.");
+        try{
+            int posicion = Integer.parseInt(jTextField1.getText());
+            lista.quitarEnPosicion(posicion);
+            JOptionPane.showMessageDialog(this, "Libro en la posición " + posicion + " eliminado.");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "agrega una posicion valida","Error", JOptionPane.ERROR_MESSAGE );
+        }
     }
     // Método para vaciar la lista
     private void vaciarLista() {
@@ -406,3 +411,4 @@ public class JIFLista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
+

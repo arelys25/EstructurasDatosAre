@@ -1,6 +1,7 @@
 package recopiladorU2;
 
 import clases.*;
+
 public class JIFArreglo extends javax.swing.JInternalFrame {
     private Vehiculo[] vehiculos;
     private int contadorVehiculos;
@@ -217,6 +218,7 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
+        jTextField5.setText("");
     }
     private void limpiarLabel(){
         jLabel6.setText("");
@@ -247,14 +249,13 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
                 String modelo = jTextField4.getText();
                 String anio = jTextField5.getText();
 
-                Vehiculo nuevoVehiculo = new Vehiculo(matricula, marca, anio,modelo,"Predeterminado");
+                Vehiculo nuevoVehiculo = new Vehiculo(matricula, marca, anio, modelo,"predeterminado");
                 vehiculos[contadorVehiculos] = nuevoVehiculo;
                 contadorVehiculos++;
 
                 jTextArea1.setText(jTextArea1.getText() + "Vehículo asignado: " + nuevoVehiculo.toString() + "\n");
                 limpiarCampos();
                 contadorBoton = 0;
-                contadorVehiculos ++;
             }
         } else {
             jTextArea1.setText(jTextArea1.getText() + "No hay más espacio en el arreglo para nuevos vehículos.\n");
@@ -299,7 +300,7 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
             jLabel8.setText("modelo: ");
             jLabel9.setText("anio: ");
             int pos = Integer.parseInt(jTextField2.getText());
-            if (pos >= 0 && pos < contadorVehiculos && vehiculos[pos] != null) {
+            if (pos >= 0 && pos <= contadorVehiculos && vehiculos[pos] != null) {
                 String nuevaMarca = jTextField3.getText();
                 String nuevoAnio = jTextField5.getText();
                 String nuevoModelo = jTextField4.getText();
@@ -327,10 +328,10 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
             contadorBoton = 0;
             try {
                 int pos = Integer.parseInt(jTextField2.getText());
-                if (pos >= 0 && pos < contadorVehiculos && vehiculos[pos] != null) {
+                if (pos >= 0 && pos <= contadorVehiculos && vehiculos[pos] != null) {
                     vehiculos[pos] = null;
                     jTextArea1.append("Vehículo retirado de la posición " + pos + ".\n");
-                    contadorVehiculos--;
+                    contadorVehiculos --;
                 } else {
                     jTextArea1.append("Posición no válida o ya vacía.\n");
                 }
