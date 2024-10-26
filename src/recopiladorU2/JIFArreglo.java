@@ -234,7 +234,7 @@ public class JIFArreglo extends javax.swing.JInternalFrame {
             // Inicializa el array de vehículos con un tamaño específico
             vehiculos = new Vehiculo[10]; // Puedes ajustar el tamaño según lo necesites
             contadorVehiculos = 0; // Reinicia el contador
-            jTextArea1.append("Estacionamiento abierto. Listo para asignar vehículos.\n");
+            jTextArea1.append("Estacionamiento abierto. Listo para asignar vehículos.\nLugares: 10");
         } else {
             JOptionPane.showMessageDialog(null,"El estacionamiento ya esta abierto.");
 
