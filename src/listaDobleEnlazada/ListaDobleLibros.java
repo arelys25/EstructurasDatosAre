@@ -137,8 +137,11 @@ public class ListaDobleLibros {
         if (inicio == fin) { // Solo un elemento en la lista
             inicio = fin = null;
         } else {
-            fin = fin.anterior; // Mueve el puntero `fin` al nodo anterior
-            fin.siguiente = null; // Elimina referencia al siguiente
+            Nodo anterior = fin.anterior; // Guarda referencia del nodo anterior
+            fin = anterior;               // Actualiza fin al nodo anterior
+            if (fin != null) {            // Verifica que fin no sea null antes de acceder
+                fin.siguiente = null;     // Elimina la referencia al siguiente
+            }
         }
 
         cantidad--; // Reduce el número de elementos
