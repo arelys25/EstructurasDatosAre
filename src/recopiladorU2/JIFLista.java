@@ -268,74 +268,113 @@ public class JIFLista extends javax.swing.JInternalFrame {
     }
 
     private void crearLista() {
-        lista = new ListaSimple();
-        JOptionPane.showMessageDialog(this, "Lista creada exitosamente.");
-    }
-    private void agregarFin() {
-        jLabel9.setText("TITULO: ");
-        jLabel10.setText("AUTOR: ");
-        jLabel11.setText("");
-
-
-        String titulo = jTextField1.getText();
-        String autor = jTextField2.getText();
-        if (titulo.isEmpty() || autor.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un título y un autor.");
-            return;
+        if (lista == null){
+            lista = new ListaSimple();
+            JOptionPane.showMessageDialog(this, "Lista creada exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(null,"La lista ya ha sido creada.");
         }
 
-        Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
-        lista.insertarFinal(nuevoTrabajo);
-        JOptionPane.showMessageDialog(this, "Libro agregado al final.");
-        limpiarField();
     }
-    private void agregarPosicion() {
+    private void agregarFin() {
+        if (lista == null){
+            JOptionPane.showMessageDialog(null,"La lista aún no ha sido creada.");
+        } else {
+            jLabel9.setText("TITULO: ");
+            jLabel10.setText("AUTOR: ");
+            jLabel11.setText("");
 
-        jLabel9.setText("TITULO: ");
-        jLabel10.setText("AUTOR: ");
-        jLabel11.setText("posicion: ");
 
-        if(contBoton >=2){
             String titulo = jTextField1.getText();
             String autor = jTextField2.getText();
+            if (titulo.isEmpty() || autor.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese un título y un autor.");
+                return;
+            }
+
+            Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
+            lista.insertarFinal(nuevoTrabajo);
+            JOptionPane.showMessageDialog(this, "Libro agregado al final.");
+            limpiarField();
+        }
+
+    }
+    private void agregarPosicion() {
+        if (lista == null){
+            JOptionPane.showMessageDialog(null,"La lista aún no ha sido creada.");
+
+        } else {
+            jLabel9.setText("TITULO: ");
+            jLabel10.setText("AUTOR: ");
+            jLabel11.setText("posicion: ");
+
+            if(contBoton >=2){
+                String titulo = jTextField1.getText();
+                String autor = jTextField2.getText();
+                try{
+                    int posicion = Integer.parseInt(jTextField3.getText());
+                    Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
+                    lista.agregarEnPosicion(nuevoTrabajo, posicion);
+                    JOptionPane.showMessageDialog(this, "Libro agregado en la posición " + posicion);
+                    limpiarField();
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(this, "agrega una posicion valida","Error", JOptionPane.ERROR_MESSAGE );
+                }
+
+            }
+        }
+
+    }
+    private void eliminarFin() {
+        if (lista == null){
+            JOptionPane.showMessageDialog(null,"La lista aún no ha sido creada.");
+
+        } else {
+            lista.quitar();
+            JOptionPane.showMessageDialog(this, "Último libro eliminado.");
+        }
+
+    }
+    private void eliminarPosicion() {
+        if (lista == null){
+            JOptionPane.showMessageDialog(null,"La lista aún no ha sido creada.");
+
+        } else {
+            jLabel9.setText("posicion: ");
+            jLabel10.setText("");
+            jLabel11.setText("");
             try{
-                int posicion = Integer.parseInt(jTextField3.getText());
-                Trabajo nuevoTrabajo = new Trabajo(titulo, autor);
-                lista.agregarEnPosicion(nuevoTrabajo, posicion);
-                JOptionPane.showMessageDialog(this, "Libro agregado en la posición " + posicion);
-                limpiarField();
+                int posicion = Integer.parseInt(jTextField1.getText());
+                lista.quitarEnPosicion(posicion);
+                JOptionPane.showMessageDialog(this, "Libro en la posición " + posicion + " eliminado.");
             }catch(NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "agrega una posicion valida","Error", JOptionPane.ERROR_MESSAGE );
             }
+        }
 
-        }
-    }
-    private void eliminarFin() {
-        lista.quitar();
-        JOptionPane.showMessageDialog(this, "Último libro eliminado.");
-    }
-    private void eliminarPosicion() {
-        jLabel9.setText("posicion: ");
-        jLabel10.setText("");
-        jLabel11.setText("");
-        try{
-            int posicion = Integer.parseInt(jTextField1.getText());
-            lista.quitarEnPosicion(posicion);
-            JOptionPane.showMessageDialog(this, "Libro en la posición " + posicion + " eliminado.");
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "agrega una posicion valida","Error", JOptionPane.ERROR_MESSAGE );
-        }
     }
     // Método para vaciar la lista
     private void vaciarLista() {
-        lista.vaciar();
-        JOptionPane.showMessageDialog(this, "Lista vaciada.");
+        if (lista == null){
+            JOptionPane.showMessageDialog(null,"La lista aún no ha sido creada.");
+
+        } else {
+            lista.vaciar();
+            JOptionPane.showMessageDialog(this, "Lista vaciada.");
+        }
+
     }
 
     // Método para destruir la lista
     private void destruirLista() {
-        lista = null;
-        JOptionPane.showMessageDialog(this, "Lista destruida.");
+        if (lista == null){
+            JOptionPane.showMessageDialog(null,"La lista aún no ha sido creada.");
+
+        } else {
+            lista = null;
+            JOptionPane.showMessageDialog(this, "Lista destruida.");
+        }
+
     }
     // Método para mostrar la lista de trabajos
     private void mostrarLista() {
