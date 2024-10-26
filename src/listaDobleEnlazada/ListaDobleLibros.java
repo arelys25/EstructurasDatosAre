@@ -132,6 +132,10 @@ public class ListaDobleLibros {
             return null;
         }
 
+        if (fin == null) { // Verifica que `fin` no sea null por seguridad
+            throw new IllegalStateException("Error: La referencia a 'fin' es nula.");
+        }
+
         Trabajo libro = fin.dato; // Guarda el dato del nodo a eliminar
 
         if (inicio == fin) { // Solo un elemento en la lista
