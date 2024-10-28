@@ -1,0 +1,182 @@
+package listaSimpleGeneric;
+
+import colas.Trabajo;
+//import listaSimpleGeneric.Revista;
+//import listas.ListaSimple;
+//import listas.Nodo;
+
+import java.util.Scanner;
+
+public class TestLista {
+    private static Scanner sc = new Scanner(System.in);
+    private static int opc;
+    private static ListaSimple<Revista> lista;
+    //private static Trabajo revista;
+    public static Revista revista;
+    private static Nodo<Revista> nodo;
+
+    public static void main (String [] args){
+        System.out.println("ARELY SINAI MUÑOZ TAPIA\nAXEL JOSUE HERNANDEZ ZAMBRANO\n");
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("0 - Salir");
+            System.out.println("1 - Crear lista");
+            System.out.println("2 - Agregar nuevo libro sl final de la lista");
+            System.out.println("3 - Agregar nuevo libro en una posicion especifica");
+            System.out.println("4 - Eliminar un libro del final de la lista");
+            System.out.println("5 - Eliminar un libro en una posicion especifica");
+            System.out.println("6 - Mostrar lista");
+            System.out.println("7 - Vaciar lista");
+            System.out.println("8 - Destruir lista\n");
+            System.out.println("Ingrese la opcion:");
+
+            opc = sc.nextInt();
+
+            switch (opc) {
+                case 0:
+                    System.out.println("Fin del programa");
+                    break;
+                case 1:
+                    crearListaSimple();
+                    break;
+                case 2:
+                    agregarLibro();
+                    break;
+                case 3:
+                    agregarLibroEspecifico();
+                    break;
+                case 4:
+                    eliminarLibroFinal();
+                    break;
+                case 5:
+                    eliminarLibroEspecifico();
+                    break;
+                case 6:
+                    System.out.println(lista.mostrarLibros());
+                    break;
+                case 7:
+                    vaciarLista();
+                    break;
+                case 8:
+                    destruirLista();
+                    break;
+                default:
+                    System.out.println("Error. Opcion invalida.\n");
+            }
+
+        } while (opc != 0);
+        System.out.println("ARELY SINAI MUÑOZ TAPIA\nAXEL JOSUE HERNANDEZ ZAMBRANO\n");
+
+    }
+
+    private static void destruirLista() {
+        lista = null; // Destruir la lista asignándola a null
+        System.out.println("Lista destruida\n");
+    }
+    private static void vaciarLista() {
+        if (lista == null) {
+            System.out.println("La lista no ha sido creada\n");
+        } else {
+            lista.vaciar(); // Suponiendo que implementas el método vaciar en ListaSimple
+            System.out.println("Lista vaciada\n");
+        }
+    }
+    private static void eliminarLibroEspecifico() {
+        if (lista == null) {
+            System.out.println("La lista no ha sido creada\n");
+        } else {
+            System.out.println("Introduce la posicion del libro a eliminar:");
+            int posicion = sc.nextInt();
+
+            if (posicion >= 0 && posicion < lista.getCantidad()) {
+                Revista revista = lista.quitarEnPosicion(posicion);
+                if (revista != null) {
+                    System.out.println("Libro eliminado: " + revista);
+                } else {
+                    System.out.println("No se pudo eliminar el libro\n");
+                }
+            } else {
+                System.out.println("Error. La posicion ingresada es invalida o esta fuera de rango.\n");
+            }
+        }
+    }
+
+    private static void eliminarLibroFinal() {
+        if (lista == null) {
+            System.out.println("La lista no ha sido creada\n");
+        } else {
+            // agregar el objeto a la lista
+            lista.quitar();
+            System.out.println("Elemento borrado con exito\n.");
+            System.out.println(lista.mostrarLibros());
+
+        }
+    }
+
+    private static void agregarLibroEspecifico() {
+        if (lista == null) {
+            System.out.println("La lista no ha sido creada\n");
+        } else {
+            System.out.println("Introduce la serie de la revista:");
+            int serie = sc.nextInt();
+            System.out.println("Introduce el editorial:");
+            String editorial = sc.next();
+            System.out.println("Introduce el numero de revista:");
+            int numero = sc.nextInt();
+
+            System.out.println("Lugares disponibles: \n0 y "+(lista.getCantidad()));
+            System.out.println("Introduce la posicion donde deseas colocar el libro:");
+            int posicion = sc.nextInt();
+
+            if (posicion >= 0 && posicion <= lista.getCantidad()) {
+                revista = new Revista(serie,editorial,numero);
+
+                // agregar el objeto a la lista
+                if (lista.agregarEnPosicion(revista,posicion)) {
+                    System.out.println("Elemento agregado\n");
+                    System.out.println(lista.mostrarLibros());
+                    System.out.println("");
+                }
+
+            } else {
+                System.out.println("Error. La posicion ingresada es invalida o esta fuera de rango.\n");
+                System.out.println("Lugares disponibles: \n0 y "+(lista.getCantidad()));
+            }
+
+        }
+    }
+
+
+    private static void agregarLibro() {
+        if (lista == null) {
+            System.out.println("La lista no ha sido creada\n");
+        } else {
+            System.out.println("Introduce la serie de la revista:");
+            int serie = sc.nextInt();
+            System.out.println("Introduce el editorial:");
+            String editorial = sc.next();
+            System.out.println("Introduce el numero de revista:");
+            int numero = sc.nextInt();
+
+            revista = new Revista(serie,editorial,numero);
+
+            // agregar el objeto a la lista
+            if (lista.agregar(revista)) {
+                System.out.println("Elemento agregado\n");
+                System.out.println(lista.mostrarLibros());
+                System.out.println("");
+            }
+
+        }
+    }
+
+    private static void crearListaSimple() {
+        if (lista == null) {
+            lista = new ListaSimple();
+            System.out.println("Lista creada\n");
+        } else {
+            System.out.println("La lista ya ha sido creada");
+        }
+    }
+
+}
