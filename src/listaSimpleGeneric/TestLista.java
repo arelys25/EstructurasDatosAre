@@ -1,6 +1,5 @@
 package listaSimpleGeneric;
 
-import colas.Trabajo;
 //import listaSimpleGeneric.Revista;
 //import listas.ListaSimple;
 //import listas.Nodo;
