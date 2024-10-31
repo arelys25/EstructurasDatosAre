@@ -1,4 +1,4 @@
-package guiListaCircular;
+package listaCircularGeneric;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,7 +35,7 @@ public class FrameListaCircularLibros {
     private JLabel posicionLabel;
     private JTextField posicionField;
 
-    public FrameListaCircularLibros (){
+    public FrameListaCircularLibros(){
         // Inicializar frame y el panel
         JFrame frame = new JFrame("Lista Circular Libros");
         panel1 = new JPanel();
@@ -295,33 +295,6 @@ public class FrameListaCircularLibros {
             }
         });
 
-        quitarFinalButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (listaDobleCircular == null){
-                    JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
-
-                } else {
-                    String sIsbn = isbnField.getText();
-                    String stitulo = tituloField.getText();
-                    String sAutor = autorField.getText();
-
-                    if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
-                        JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
-                    } else {
-                        try {
-                            int iIsbn = Integer.parseInt(sIsbn);
-
-
-
-                        } catch (NumberFormatException nfe) {
-                            JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
-                        }
-                    }
-                }
-            }
-        });
-
 
         cantidadDeLibrosButton.addActionListener(new ActionListener() {
             @Override
@@ -427,23 +400,49 @@ public class FrameListaCircularLibros {
                 if (listaDobleCircular == null) {
                     JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
                 } else {
-                    String sPosicion = posicionField.getText();
-                    try {
-                        int iPosicion = Integer.parseInt(sPosicion);
-                        Libro eliminado = listaDobleCircular.eliminarEnPosicion(iPosicion);
-                        if (eliminado != null) {
-                            resultTxtA.setText("Elemento eliminado correctamente.\n\nLibro eliminado:\n\n" + eliminado.toString() +
-                                    "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
+                    panel1.add(posicionField);
+                    panel1.add(posicionLabel);
 
-                            isbnField.setText("");
-                            tituloField.setText("");
-                            autorField.setText("");
-                        } else {
-                            JOptionPane.showMessageDialog(null,"Error. Posición inválida o la lista está vacía.");
+                    panel1.revalidate();
+                    panel1.repaint();
+
+                    int disponibles = listaDobleCircular.getCantidad() -1;
+                    resultTxtA.setText("Posiciones disponibles para quitar: Del 0 al "+disponibles);
+
+                    String sPosicion = posicionField.getText();
+
+                    if (sPosicion.trim().isBlank()){
+                        JOptionPane.showMessageDialog(null,"Error. El espacio de posicion NO debe quedar en blanco.");
+
+                    } else {
+                        try {
+                            int iPosicion = Integer.parseInt(sPosicion);
+
+                            if (iPosicion > disponibles || iPosicion < 0){
+                                JOptionPane.showMessageDialog(null,"Posicion invalida.");
+
+                            }else {
+                                Libro eliminado = listaDobleCircular.eliminarEnPosicion(iPosicion);
+                                if (eliminado != null) {
+                                    resultTxtA.setText("Elemento eliminado correctamente.\n\nLibro eliminado:\n\n" + eliminado.toString() +
+                                            "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
+
+                                    isbnField.setText("");
+                                    tituloField.setText("");
+                                    autorField.setText("");
+                                    posicionField.setText("");
+                                    panel1.remove(posicionLabel);
+                                    panel1.remove(posicionField);
+                                } else {
+                                    JOptionPane.showMessageDialog(null,"Error. Posición inválida o la lista está vacía.");
+                                }
+                            }
+
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null,"Error. Posición inválida.");
                         }
-                    } catch (NumberFormatException nfe) {
-                        JOptionPane.showMessageDialog(null,"Error. Posición inválida.");
                     }
+
                 }
             }
         });
@@ -454,25 +453,50 @@ public class FrameListaCircularLibros {
                 if (listaDobleCircular == null) {
                     JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
                 } else {
+                    panel1.add(posicionField);
+                    panel1.add(posicionLabel);
+
+                    panel1.revalidate();
+                    panel1.repaint();
+
+                    int disponibles = listaDobleCircular.getCantidad() -1;
+                    resultTxtA.setText("Posiciones disponibles para modificar: Del 0 al "+disponibles);
+
+
                     String sPosicion = posicionField.getText();
                     String sIsbn = isbnField.getText();
                     String sTitulo = tituloField.getText();
                     String sAutor = autorField.getText();
-                    try {
-                        int iPosicion = Integer.parseInt(sPosicion);
-                        int iIsbn = Integer.parseInt(sIsbn);
-                        Libro nuevoLibro = new Libro(sTitulo, sAutor, iIsbn);
-                        if (listaDobleCircular.modificar(iPosicion, nuevoLibro)) {
-                            resultTxtA.setText("Elemento modificado correctamente.\n\nElementos en la lista:\n" + listaDobleCircular.mostrarElementos());
-                            isbnField.setText("");
-                            tituloField.setText("");
-                            autorField.setText("");
-                        } else {
-                            JOptionPane.showMessageDialog(null,"Error. Posición inválida.");
+
+                    if (sIsbn.trim().isBlank() || sTitulo.isBlank() || sAutor.isBlank() || sPosicion.trim().isBlank()){
+                        JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
+                    } else {
+                        try {
+                            int iPosicion = Integer.parseInt(sPosicion);
+                            int iIsbn = Integer.parseInt(sIsbn);
+
+                            if (iPosicion > disponibles || iPosicion < 0){
+                                JOptionPane.showMessageDialog(null,"Posicion invalida.");
+                            } else {
+                                Libro nuevoLibro = new Libro(sTitulo, sAutor, iIsbn);
+                                if (listaDobleCircular.modificar(iPosicion, nuevoLibro)) {
+                                    resultTxtA.setText("Elemento modificado correctamente.\n\nElementos en la lista:\n" + listaDobleCircular.mostrarElementos());
+
+                                    isbnField.setText("");
+                                    tituloField.setText("");
+                                    autorField.setText("");
+                                    panel1.remove(posicionLabel);
+                                    panel1.remove(posicionField);
+                                } else {
+                                    JOptionPane.showMessageDialog(null,"Error. Posición inválida.");
+                                }
+                            }
+
+                        } catch (NumberFormatException nfe) {
+                            JOptionPane.showMessageDialog(null,"Error. Datos inválidos.");
                         }
-                    } catch (NumberFormatException nfe) {
-                        JOptionPane.showMessageDialog(null,"Error. Datos inválidos.");
                     }
+
                 }
             }
         });
