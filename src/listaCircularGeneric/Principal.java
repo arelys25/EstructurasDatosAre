@@ -3,7 +3,7 @@ package listaCircularGeneric;
 public class Principal extends javax.swing.JFrame {
     private FrameListaCircularLibros modLibro;
     private FrameListaCircularRevista modRevista;
-    private FrameListaCircularLibros modArticulo;
+    private FrameListaCircularArticulo modArticulo;
 
 
     /**
@@ -33,9 +33,9 @@ public class Principal extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        btn_libro.setIcon(new javax.swing.ImageIcon(""));
+        btn_libro.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\libro.png"));
         //btn_arreglo.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\iconos\\array_icon.png")); // NOI18N
-        btn_libro.setText("Libro");
+        btn_libro.setText("LIBRO");
         btn_libro.setFocusable(false);
         btn_libro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_libro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -46,8 +46,8 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_libro);
 
-        btn_revista.setIcon(new javax.swing.ImageIcon("")); // NOI18N
-        btn_revista.setText("Revista");
+        btn_revista.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\revista.png")); // NOI18N
+        btn_revista.setText("REVISTA");
         btn_revista.setFocusable(false);
         btn_revista.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_revista.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -59,8 +59,8 @@ public class Principal extends javax.swing.JFrame {
         });
         jToolBar1.add(btn_revista);
 
-        btn_articulo.setIcon(new javax.swing.ImageIcon("")); // NOI18N
-        btn_articulo.setText("Articulo");
+        btn_articulo.setIcon(new javax.swing.ImageIcon("C:\\Users\\arely\\OneDrive\\Universidad\\3er semestre\\Estructuras de datos\\RecUIcons\\articulo.png")); // NOI18N
+        btn_articulo.setText("ARTICULO");
         btn_articulo.setToolTipText("");
         btn_articulo.setFocusable(false);
         btn_articulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -90,7 +90,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_arregloActionPerformed
 
     private void btn_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pilaActionPerformed
-        modArticulo = new FrameListaCircularLibros();
+        modArticulo = new FrameListaCircularArticulo();
         dpn_escritorio.add(modArticulo);
     }//GEN-LAST:event_btn_pilaActionPerformed
 
