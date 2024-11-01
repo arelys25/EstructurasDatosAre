@@ -4,13 +4,13 @@ package listaCircularGeneric;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
+public class FrameListaCircularRevista extends javax.swing.JInternalFrame {
 
-    private ListaDobleCircular<Libro> listaDobleCircular;
-    private Libro libro;
-    private NodoListaDobleCircular<Libro> nodo;
+    private ListaDobleCircular<Revista> listaDobleCircular;
+    private Revista revista;
+    private NodoListaDobleCircular<Revista> nodo;
 
-    public FrameListaCircularLibros() {
+    public FrameListaCircularRevista() {
         initComponents();
     }
 
@@ -18,13 +18,13 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        isbnField = new JTextField();
-        tituloField = new JTextField();
-        autorField = new JTextField();
+        numeroField = new JTextField();
+        editorialField = new JTextField();
+        serieField = new JTextField();
         posicionField = new JTextField();
-        isbnLabel = new JLabel("ISBN:");
-        tituloLabel = new JLabel("TITULO:");
-        autorLabel = new JLabel("AUTOR:");
+        numeroLabel = new JLabel("NUMERO:");
+        editorialLabel = new JLabel("EDITORIAL:");
+        serieLabel = new JLabel("NUM SERIE:");
         posicionLabel = new JLabel("POSICION:");
         resultTxtA = new JTextArea();
         crearButton = new JButton("CREAR");
@@ -47,7 +47,7 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("L I B R O S");
+        setTitle("R E V I S T A S");
         setVisible(true);
 
         crearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -151,12 +151,12 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
 
         getContentPane().setLayout(null);
 
-        isbnLabel.setBounds(30,30,150,25);
-        isbnField.setBounds(100,30,250,25);
-        tituloLabel.setBounds(30,65,150,25);
-        tituloField.setBounds(100,65,250,25);
-        autorLabel.setBounds(30,100,150,25);
-        autorField.setBounds(100,100,250,25);
+        numeroLabel.setBounds(30,30,150,25);
+        numeroField.setBounds(100,30,250,25);
+        editorialLabel.setBounds(30,65,150,25);
+        editorialField.setBounds(100,65,250,25);
+        serieLabel.setBounds(30,100,150,25);
+        serieField.setBounds(100,100,250,25);
         posicionLabel.setBounds(30,135,150,25);
         posicionField.setBounds(100,135,250,25);
         resultTxtA.setBounds(40,170,410,300);
@@ -181,12 +181,12 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
 
 
         // añadir componentes al panel
-        add(isbnLabel);
-        add(isbnField);
-        add(tituloLabel);
-        add(tituloField);
-        add(autorLabel);
-        add(autorField);
+        add(numeroLabel);
+        add(numeroField);
+        add(editorialLabel);
+        add(editorialField);
+        add(serieLabel);
+        add(serieField);
 
 
         add(resultTxtA);
@@ -225,33 +225,34 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
     private void insertarInicioButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (listaDobleCircular == null){
             JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
-            isbnField.setText("");
-            tituloField.setText("");
-            autorField.setText("");
+            numeroField.setText("");
+            editorialField.setText("");
+            serieField.setText("");
 
         } else {
-            String sIsbn = isbnField.getText();
-            String stitulo = tituloField.getText();
-            String sAutor = autorField.getText();
+            String sNumero = numeroField.getText();
+            String sEditorial = editorialField.getText();
+            String sSerie = serieField.getText();
 
-            if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
+            if (sNumero.isBlank() || sEditorial.isBlank() || sSerie.isBlank()){
                 JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
             } else {
                 try {
-                    int iIsbn = Integer.parseInt(sIsbn);
+                    int iNumero = Integer.parseInt(sNumero);
+                    int iSerie = Integer.parseInt(sSerie);
 
-                    libro = new Libro(stitulo,sAutor,iIsbn);
+                    revista = new Revista(iSerie,sEditorial,iNumero);
 
-                    listaDobleCircular.ingresarInicio(libro);
+                    listaDobleCircular.ingresarInicio(revista);
 
                     resultTxtA.setText("Elemento agregado con exito.\n"+listaDobleCircular.mostrarElementos());
 
-                    isbnField.setText("");
-                    tituloField.setText("");
-                    autorField.setText("");
+                    numeroField.setText("");
+                    editorialField.setText("");
+                    serieField.setText("");
 
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
+                    JOptionPane.showMessageDialog(null,"Error. Numero invalido");
                 }
             }
 
@@ -260,33 +261,34 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
     private void insertarFinalButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (listaDobleCircular == null){
             JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
-            isbnField.setText("");
-            tituloField.setText("");
-            autorField.setText("");
+            numeroField.setText("");
+            editorialField.setText("");
+            serieField.setText("");
 
         } else {
-            String sIsbn = isbnField.getText();
-            String stitulo = tituloField.getText();
-            String sAutor = autorField.getText();
+            String sNumero = numeroField.getText();
+            String sEditorial = editorialField.getText();
+            String sSerie = serieField.getText();
 
-            if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank()){
+            if (sNumero.isBlank() || sEditorial.isBlank() || sSerie.isBlank()){
                 JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
             } else {
                 try {
-                    int iIsbn = Integer.parseInt(sIsbn);
+                    int iNumero = Integer.parseInt(sNumero);
+                    int iSerie = Integer.parseInt(sSerie);
 
-                    libro = new Libro(stitulo,sAutor,iIsbn);
+                    revista = new Revista(iSerie,sEditorial,iNumero);
 
-                    listaDobleCircular.ingresarFinal(libro);
+                    listaDobleCircular.ingresarFinal(revista);
 
                     resultTxtA.setText("Elemento agregado con exito.\n"+listaDobleCircular.mostrarElementos());
 
-                    isbnField.setText("");
-                    tituloField.setText("");
-                    autorField.setText("");
+                    numeroField.setText("");
+                    editorialField.setText("");
+                    serieField.setText("");
 
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null,"Error. ISBN invalido");
+                    JOptionPane.showMessageDialog(null,"Error. Numero o Num de Serie invalido");
                 }
             }
 
@@ -305,33 +307,32 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
 
             resultTxtA.setText("Posiciones disponibles: Del 0 al "+listaDobleCircular.getCantidad());
 
-            String sIsbn = isbnField.getText();
-            String stitulo = tituloField.getText();
-            String sAutor = autorField.getText();
+            String sNumero = numeroField.getText();
+            String sEditorial = editorialField.getText();
+            String sSerie = serieField.getText();
             String sPosicion = posicionField.getText();
 
-            if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank() || sPosicion.trim().isBlank()){
+            if (sNumero.isBlank() || sEditorial.isBlank() || sSerie.isBlank() || sPosicion.trim().isBlank()){
                 JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
             } else {
                 try {
-
+                    int iNumero = Integer.parseInt(sNumero);
+                    int iSerie = Integer.parseInt(sSerie);
                     int iPosicion = Integer.parseInt(sPosicion);
-                    int iIsbn = Integer.parseInt(sIsbn);
-
 
                     if (iPosicion > listaDobleCircular.getCantidad() || iPosicion < 0){
                         JOptionPane.showMessageDialog(null,"Posicion invalida.");
                     } else {
-                        libro = new Libro(stitulo,sAutor,iIsbn);
+                        revista = new Revista(iSerie,sEditorial,iNumero);
 
 
-                        listaDobleCircular.ingresarEnPosicion(libro,iPosicion);
+                        listaDobleCircular.ingresarEnPosicion(revista,iPosicion);
 
                         resultTxtA.setText("Elemento agregado con exito.\n"+listaDobleCircular.mostrarElementos());
 
-                        isbnField.setText("");
-                        tituloField.setText("");
-                        autorField.setText("");
+                        numeroField.setText("");
+                        editorialField.setText("");
+                        serieField.setText("");
                         posicionField.setText("");
                         remove(posicionLabel);
                         remove(posicionField);
@@ -339,7 +340,7 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
 
 
                 } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null,"Error. ISBN invalido o posicion invalida.");
+                    JOptionPane.showMessageDialog(null,"Error. Numero, serie invalido o posicion invalida.");
                 }
             }
         }
@@ -349,8 +350,7 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
 
         } else {
-
-            Libro eliminado = listaDobleCircular.eliminarInicio();
+            Revista eliminado = listaDobleCircular.eliminarInicio();
 
             if (eliminado != null) {
                 // Actualizar el campo de texto con el libro eliminado y la lista actualizada
@@ -365,7 +365,7 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
         if (listaDobleCircular == null) {
             JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
         } else {
-            Libro eliminado = listaDobleCircular.eliminarFinal();
+            Revista eliminado = listaDobleCircular.eliminarFinal();
             if (eliminado != null) {
                 resultTxtA.setText("Elemento eliminado correctamente.\n\nElemento eliminado:\n\n" + eliminado.toString() +
                         "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
@@ -400,14 +400,14 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(null,"Posicion invalida.");
 
                     }else {
-                        Libro eliminado = listaDobleCircular.eliminarEnPosicion(iPosicion);
+                        Revista eliminado = listaDobleCircular.eliminarEnPosicion(iPosicion);
                         if (eliminado != null) {
                             resultTxtA.setText("Elemento eliminado correctamente.\n\nElemento eliminado:\n\n" + eliminado.toString() +
                                     "\n\nElementos restantes en la lista:\n" + listaDobleCircular.mostrarElementos());
 
-                            isbnField.setText("");
-                            tituloField.setText("");
-                            autorField.setText("");
+                            numeroField.setText("");
+                            editorialField.setText("");
+                            serieField.setText("");
                             posicionField.setText("");
                             remove(posicionLabel);
                             remove(posicionField);
@@ -437,30 +437,30 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
             resultTxtA.setText("Posiciones disponibles para modificar: Del 0 al "+disponibles);
 
 
-            String sIsbn = isbnField.getText();
-            String stitulo = tituloField.getText();
-            String sAutor = autorField.getText();
+            String sNumero = numeroField.getText();
+            String sEditorial = editorialField.getText();
+            String sSerie = serieField.getText();
             String sPosicion = posicionField.getText();
 
-            if (sIsbn.isBlank() || stitulo.isBlank() || sAutor.isBlank() || sPosicion.trim().isBlank()){
+            if (sNumero.isBlank() || sEditorial.isBlank() || sSerie.isBlank() || sPosicion.trim().isBlank()){
                 JOptionPane.showMessageDialog(null,"Error. Ninguno de los espacios debe quedar en blanco.");
             } else {
                 try {
-
+                    int iNumero = Integer.parseInt(sNumero);
+                    int iSerie = Integer.parseInt(sSerie);
                     int iPosicion = Integer.parseInt(sPosicion);
-                    int iIsbn = Integer.parseInt(sIsbn);
 
                     if (iPosicion > disponibles || iPosicion < 0){
                         JOptionPane.showMessageDialog(null,"Posicion invalida.");
                     } else {
-                        Libro nuevoLibro = new Libro(stitulo,sAutor,iIsbn);
+                        Revista nuevaRevista = new Revista(iSerie,sEditorial,iNumero);
 
-                        if (listaDobleCircular.modificar(iPosicion, nuevoLibro)) {
+                        if (listaDobleCircular.modificar(iPosicion, nuevaRevista)) {
                             resultTxtA.setText("Elemento modificado correctamente.\n\nElementos en la lista:\n" + listaDobleCircular.mostrarElementos());
 
-                            isbnField.setText("");
-                            tituloField.setText("");
-                            autorField.setText("");
+                            numeroField.setText("");
+                            editorialField.setText("");
+                            serieField.setText("");
                             remove(posicionLabel);
                             remove(posicionField);
                         } else {
@@ -521,15 +521,15 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
     private void todosButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (listaDobleCircular == null){
             JOptionPane.showMessageDialog(null,"Error. La lista aun no se ha creado.");
-            isbnField.setText("");
-            tituloField.setText("");
-            autorField.setText("");
+            numeroField.setText("");
+            editorialField.setText("");
+            serieField.setText("");
         } else {
             resultTxtA.setText("Lista de elementos:\n"+listaDobleCircular.mostrarElementos());
 
-            isbnField.setText("");
-            tituloField.setText("");
-            autorField.setText("");
+            numeroField.setText("");
+            editorialField.setText("");
+            serieField.setText("");
         }
     }
     private void anteriorButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -549,12 +549,12 @@ public class FrameListaCircularLibros extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JTextField isbnField;
-    private JTextField tituloField;
-    private JTextField autorField;
-    private JLabel isbnLabel;
-    private JLabel tituloLabel;
-    private JLabel autorLabel;
+    private JTextField numeroField;
+    private JTextField editorialField;
+    private JTextField serieField;
+    private JLabel numeroLabel;
+    private JLabel editorialLabel;
+    private JLabel serieLabel;
     private JTextArea resultTxtA;
     private JButton crearButton;
     private JButton insertarInicioButton;

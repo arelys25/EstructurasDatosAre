@@ -1,14 +1,14 @@
 package listaCircularGeneric;
 
-public class NodoListaDobleCircular {
+public class NodoListaDobleCircular<E> {
 
-    public Libro dato;
+    public E dato;
 
     public NodoListaDobleCircular siguiente;
 
     public NodoListaDobleCircular anterior;
 
-    public NodoListaDobleCircular (Libro dato){
+    public NodoListaDobleCircular (E dato){
         this.dato = dato;
         this.siguiente = null;
         this.anterior = null;

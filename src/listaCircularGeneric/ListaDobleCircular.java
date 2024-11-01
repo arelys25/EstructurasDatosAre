@@ -1,9 +1,9 @@
 package listaCircularGeneric;
 
-public class ListaDobleCircular {
-    private NodoListaDobleCircular inicio;
-    private NodoListaDobleCircular fin;
-    private NodoListaDobleCircular actual; // Para navegación
+public class ListaDobleCircular<E> {
+    private NodoListaDobleCircular<E> inicio;
+    private NodoListaDobleCircular<E> fin;
+    private NodoListaDobleCircular<E> actual; // Para navegación
     private int cantidad;
 
     public ListaDobleCircular() {
@@ -31,9 +31,9 @@ public class ListaDobleCircular {
         return concatena.toString();
     }
 
-    // Método para ingresar un libro al inicio
-    public void ingresarInicio(Libro libro) {
-        NodoListaDobleCircular nuevo = new NodoListaDobleCircular(libro);
+    // Método para ingresar un element al inicio
+    public void ingresarInicio(E element) {
+        NodoListaDobleCircular<E> nuevo = new NodoListaDobleCircular<E>(element);
         if (!estaVacia()) {
             nuevo.siguiente = inicio;
             nuevo.anterior = fin;
@@ -47,9 +47,9 @@ public class ListaDobleCircular {
         cantidad++;
     }
 
-    // Método para ingresar un libro al final
-    public void ingresarFinal(Libro libro) {
-        NodoListaDobleCircular nuevo = new NodoListaDobleCircular(libro);
+    // Método para ingresar un element al final
+    public void ingresarFinal(E element) {
+        NodoListaDobleCircular<E> nuevo = new NodoListaDobleCircular<E>(element);
         if (!estaVacia()) {
             nuevo.anterior = fin;
             nuevo.siguiente = inicio;
@@ -63,18 +63,18 @@ public class ListaDobleCircular {
         cantidad++;
     }
 
-    // Método para ingresar un libro en una posición específica
-    public boolean ingresarEnPosicion(Libro libro, int posicion) {
+    // Método para ingresar un element en una posición específica
+    public boolean ingresarEnPosicion(E element, int posicion) {
         if (posicion < 0 || posicion > cantidad) return false;
         if (posicion == 0) {
-            ingresarInicio(libro);
+            ingresarInicio(element);
             return true;
         } else if (posicion == cantidad) {
-            ingresarFinal(libro);
+            ingresarFinal(element);
             return true;
         } else {
-            NodoListaDobleCircular nuevo = new NodoListaDobleCircular(libro);
-            NodoListaDobleCircular actual = inicio;
+            NodoListaDobleCircular<E> nuevo = new NodoListaDobleCircular<E>(element);
+            NodoListaDobleCircular<E> actual = inicio;
             for (int i = 0; i < posicion - 1; i++) {
                 actual = actual.siguiente;
             }
@@ -88,9 +88,9 @@ public class ListaDobleCircular {
     }
 
     // Método para eliminar el primer libro
-    public Libro eliminarInicio() {
+    public E eliminarInicio() {
         if (estaVacia()) return null;
-        Libro libro = inicio.dato;
+        E element = inicio.dato;
         if (inicio == fin) {
             inicio = fin = null;
         } else {
@@ -99,13 +99,13 @@ public class ListaDobleCircular {
             fin.siguiente = inicio;
         }
         cantidad--;
-        return libro;
+        return element;
     }
 
     // Método para eliminar el último libro
-    public Libro eliminarFinal() {
+    public E eliminarFinal() {
         if (estaVacia()) return null;
-        Libro libro = fin.dato;
+        E element = fin.dato;
         if (inicio == fin) {
             inicio = fin = null;
         } else {
@@ -114,16 +114,16 @@ public class ListaDobleCircular {
             inicio.anterior = fin;
         }
         cantidad--;
-        return libro;
+        return element;
     }
 
     // Método para eliminar un libro en una posición específica
-    public Libro eliminarEnPosicion(int posicion) {
+    public E eliminarEnPosicion(int posicion) {
         if (posicion < 0 || posicion >= cantidad) return null;
         if (posicion == 0) return eliminarInicio();
         if (posicion == cantidad - 1) return eliminarFinal();
 
-        NodoListaDobleCircular actual = inicio;
+        NodoListaDobleCircular<E> actual = inicio;
         for (int i = 0; i < posicion; i++) {
             actual = actual.siguiente;
         }
@@ -134,13 +134,13 @@ public class ListaDobleCircular {
     }
 
     // Método para modificar un libro en una posición específica
-    public boolean modificar(int posicion, Libro nuevoLibro) {
+    public boolean modificar(int posicion, E nuevoElemento) {
         if (posicion < 0 || posicion >= cantidad) return false;
-        NodoListaDobleCircular actual = inicio;
+        NodoListaDobleCircular<E> actual = inicio;
         for (int i = 0; i < posicion; i++) {
             actual = actual.siguiente;
         }
-        actual.dato = nuevoLibro;
+        actual.dato = nuevoElemento;
         return true;
     }
 
@@ -157,13 +157,13 @@ public class ListaDobleCircular {
     }
 
     // Método para obtener el primer libro
-    public Libro primeroFuncion() {
+    public E primeroFuncion() {
         if (estaVacia()) return null;
         return inicio.dato;
     }
 
     // Método para obtener el libro anterior en la lista
-    public Libro anteriorFuncion() {
+    public E anteriorFuncion() {
         if (estaVacia()) return null;
 
         if (actual == null) {
@@ -176,13 +176,13 @@ public class ListaDobleCircular {
     }
 
     // Método para obtener el último libro
-    public Libro ultimoFuncion() {
+    public E ultimoFuncion() {
         if (fin == null) return null;
         return fin.dato;
     }
 
     // Método para obtener el libro siguiente en la lista
-    public Libro siguienteFuncion() {
+    public E siguienteFuncion() {
         if (estaVacia()) return null;
         if (actual == null) {
             actual = inicio;
