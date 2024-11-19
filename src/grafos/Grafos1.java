@@ -13,7 +13,7 @@ public class Grafos1 {
     private static Scanner sc = new Scanner(System.in);
     private static int contVertices = 0;
     private static int numVertices;
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
         int opc;
         do {
             System.out.println("\nMENU:");
