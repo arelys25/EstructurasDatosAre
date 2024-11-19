@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class ArbolBST {
-    private NodoBST raiz;
+public class ArbolBST<E extends Nombrable & Comparable<E>> {
+    private NodoBST<E> raiz;
 
     public ArbolBST() {
         this.raiz = null;
@@ -14,8 +14,8 @@ public class ArbolBST {
     public boolean isEmpty(){
         return raiz == null;
     }
-    public void insertar(Ciudad ciudad){
-        NodoBST nuevo = new NodoBST(ciudad);
+    public void insertar(E element){
+        NodoBST<E> nuevo = new NodoBST<>(element);
 
         if (isEmpty()){
             raiz = nuevo;
@@ -24,7 +24,7 @@ public class ArbolBST {
         }
     }
 
-    public void insertarRecursivo(NodoBST nodoActual, NodoBST nuevo){
+    public void insertarRecursivo(NodoBST<E> nodoActual, NodoBST<E> nuevo){
         if (nuevo.getDato().getNombre().compareToIgnoreCase(nodoActual.getDato().getNombre()) < 0) {
             if (nodoActual.getIzq() == null) {
                 nodoActual.setIzq(nuevo);
@@ -40,11 +40,11 @@ public class ArbolBST {
         }
     }
 
-    public Ciudad buscar(String nombre) {
+    public E buscar(String nombre) {
         return buscarRecursivo(raiz, nombre);  // Devolvemos el resultado de la búsqueda recursiva
     }
 
-    public Ciudad buscarRecursivo(NodoBST nodoActual, String nombre) {
+    public E buscarRecursivo(NodoBST<E> nodoActual, String nombre) {
         if (nodoActual == null) {
             return null;  // Si el nodo es null, no encontramos la ciudad
         }
@@ -52,9 +52,9 @@ public class ArbolBST {
         if (nodoActual.getDato().getNombre().equalsIgnoreCase(nombre)) {
             return nodoActual.getDato();  // Si encontramos la ciudad, devolvemos los datos
         } else if (nombre.compareToIgnoreCase(nodoActual.getDato().getNombre()) < 0) {
-            return buscarRecursivo(nodoActual.getIzq(), nombre);  // Buscamos en el subárbol izquierdo
+            return (E) buscarRecursivo(nodoActual.getIzq(), nombre);  // Buscamos en el subárbol izquierdo
         } else {
-            return buscarRecursivo(nodoActual.getDcho(), nombre);  // Buscamos en el subárbol derecho
+            return (E) buscarRecursivo(nodoActual.getDcho(), nombre);  // Buscamos en el subárbol derecho
         }
     }
 
@@ -62,7 +62,7 @@ public class ArbolBST {
         preOrdenRecursivo(raiz, 0);
     }
 
-    private void preOrdenRecursivo(NodoBST nodo, int nivel) {
+    private void preOrdenRecursivo(NodoBST<E> nodo, int nivel) {
         if (nodo != null) {
             // Agregar tab según el nivel actual
             System.out.println("\t".repeat(nivel) + nodo.getDato());
@@ -75,7 +75,7 @@ public class ArbolBST {
         inOrdenRecursivo(raiz, 0);
     }
 
-    private void inOrdenRecursivo(NodoBST nodo, int nivel) {
+    private void inOrdenRecursivo(NodoBST<E> nodo, int nivel) {
         if (nodo != null) {
             inOrdenRecursivo(nodo.getIzq(), nivel + 1);
             System.out.println("\t".repeat(nivel) + nodo.getDato());
@@ -87,7 +87,7 @@ public class ArbolBST {
         postOrdenRecursivo(raiz, 0);
     }
 
-    private void postOrdenRecursivo(NodoBST nodo, int nivel) {
+    private void postOrdenRecursivo(NodoBST<E> nodo, int nivel) {
         if (nodo != null) {
             postOrdenRecursivo(nodo.getIzq(), nivel + 1);
             postOrdenRecursivo(nodo.getDcho(), nivel + 1);
@@ -99,7 +99,7 @@ public class ArbolBST {
         raiz = eliminarRecursivo(raiz, nombre);
     }
 
-    private NodoBST eliminarRecursivo(NodoBST nodo, String nombre) {
+    private NodoBST<E> eliminarRecursivo(NodoBST<E> nodo, String nombre) {
         if (nodo == null) {
             return null;
         }
@@ -115,7 +115,7 @@ public class ArbolBST {
                 return nodo.getIzq();
             }
 
-            NodoBST sucesor = obtenerSucesor(nodo.getDcho());
+            NodoBST<E> sucesor = obtenerSucesor(nodo.getDcho());
             nodo.setDato(sucesor.getDato());
             nodo.setDcho(eliminarRecursivo(nodo.getDcho(), sucesor.getDato().getNombre()));
         }
@@ -123,7 +123,7 @@ public class ArbolBST {
         return nodo;
     }
 
-    private NodoBST obtenerSucesor(NodoBST nodo) {
+    private NodoBST<E> obtenerSucesor(NodoBST<E> nodo) {
         while (nodo.getIzq() != null) {
             nodo = nodo.getIzq();
         }
@@ -132,12 +132,12 @@ public class ArbolBST {
 
     public void balancear() {
         // ArrayList implementa a una lista dinamica sin tamaño en espoecifico
-        ArrayList<NodoBST> nodos = new ArrayList<>();
+        ArrayList<NodoBST<E>> nodos = new ArrayList<>();
         almacenarEnOrden(raiz, nodos);
         raiz = crearArbolBalanceado(nodos, 0, nodos.size() - 1);
     }
 
-    private void almacenarEnOrden(NodoBST nodo, ArrayList<NodoBST> nodos) {
+    private void almacenarEnOrden(NodoBST<E> nodo, ArrayList<NodoBST<E>> nodos) {
         if (nodo != null) {
             almacenarEnOrden(nodo.getIzq(), nodos);
             nodos.add(nodo);
@@ -145,7 +145,7 @@ public class ArbolBST {
         }
     }
 
-    private NodoBST crearArbolBalanceado(ArrayList<NodoBST> nodos, int inicio, int fin) {
+    private NodoBST<E> crearArbolBalanceado(ArrayList<NodoBST<E>> nodos, int inicio, int fin) {
         if (inicio > fin) {
             return null;
         }
@@ -190,7 +190,7 @@ public class ArbolBST {
         return calcularProfundidad(raiz);
     }
 
-    private int calcularProfundidad(NodoBST nodo) {
+    private int calcularProfundidad(NodoBST<E> nodo) {
         if (nodo == null) {
             return 0;
         }
@@ -204,6 +204,10 @@ public class ArbolBST {
 
     public void vaciar() {
         raiz = null;
+    }
+
+    public NodoBST<E> getRaiz() {
+        return raiz;
     }
 
 }

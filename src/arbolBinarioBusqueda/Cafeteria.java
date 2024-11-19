@@ -2,15 +2,15 @@ package arbolBinarioBusqueda;
 
 import java.util.Objects;
 
-public class Ciudad implements Nombrable, Comparable<Ciudad> {
+public class Cafeteria implements Nombrable, Comparable<Cafeteria>{
     private String nombre;
-    private String pais;
-    private int poblacion;
+    private String ubicacion;
+    private int numExt;
 
-    public Ciudad(String nombre, String pais, int poblacion) {
+    public Cafeteria(String nombre, String ubicacion, int numExt) {
         this.nombre = nombre;
-        this.pais = pais;
-        this.poblacion = poblacion;
+        this.ubicacion = ubicacion;
+        this.numExt = numExt;
     }
 
     @Override
@@ -27,28 +27,28 @@ public class Ciudad implements Nombrable, Comparable<Ciudad> {
         this.nombre = nombre;
     }
 
-    public String getPais() {
-        return pais;
+    public String getUbicacion() {
+        return ubicacion;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
-    public int getPoblacion() {
-        return poblacion;
+    public int getNumExt() {
+        return numExt;
     }
 
-    public void setPoblacion(int poblacion) {
-        this.poblacion = poblacion;
+    public void setNumExt(int numExt) {
+        this.numExt = numExt;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ciudad ciudad = (Ciudad) o;
-        return Objects.equals(nombre, ciudad.nombre);
+        Cafeteria cafeteria = (Cafeteria) o;
+        return Objects.equals(nombre, cafeteria.nombre);
     }
 
     @Override
@@ -58,15 +58,15 @@ public class Ciudad implements Nombrable, Comparable<Ciudad> {
 
     @Override
     public String toString() {
-        return "Ciudad{" +
+        return "Cafeteria{" +
                 "nombre='" + nombre + '\'' +
-                ", pais='" + pais + '\'' +
-                ", poblacion=" + poblacion +
+                ", ubicacion='" + ubicacion + '\'' +
+                ", numExt=" + numExt +
                 '}';
     }
 
     @Override
-    public int compareTo(Ciudad o) {
+    public int compareTo(Cafeteria o) {
         return 0;
     }
 }

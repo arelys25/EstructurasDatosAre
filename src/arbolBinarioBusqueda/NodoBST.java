@@ -1,21 +1,21 @@
 package arbolBinarioBusqueda;
 
-public class NodoBST {
-    public Ciudad dato;
-    public NodoBST izq;
-    public NodoBST dcho;
+public class NodoBST<E> {
+    public E dato;
+    public NodoBST<E> izq;
+    public NodoBST<E> dcho;
 
-    public NodoBST(Ciudad dato) {
+    public NodoBST(E dato) {
         this.dato = dato;
         this.izq = null;
         this.dcho = null;
     }
 
-    public Ciudad getDato() {
+    public E getDato() {
         return dato;
     }
 
-    public void setDato(Ciudad dato) {
+    public void setDato(E dato) {
         this.dato = dato;
     }
 

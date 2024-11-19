@@ -1,10 +1,15 @@
 package arbolBinarioBusqueda;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
-public class TestArbolBST {
-    private static ArbolBST arbol = null;  // Instancia del árbol de ciudades
+public class TestArbolBSTCiudades {
+    private static ArbolBST<Ciudad> arbol = null;  // Instancia del árbol de ciudades
+    private static Ciudad ciudad;
+    private static List<Ciudad> listaCiudades = new ArrayList<>(); // Lista para guardar las ciudades
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -12,19 +17,20 @@ public class TestArbolBST {
 
         do {
             System.out.println("\nMenú:");
-            System.out.println("1. Crear un nuevo árbol de ciudades.");
-            System.out.println("2. Agregar una nueva ciudad al árbol.");
-            System.out.println("3. Eliminar una ciudad del árbol.");
+            System.out.println("1. Crear un nuevo árbol de elementos.");
+            System.out.println("2. Agregar un nuevo elemento al árbol.");
+            System.out.println("3. Eliminar un elemento del árbol.");
             System.out.println("4. Balancear el árbol.");
-            System.out.println("5. Buscar una ciudad en el árbol.");
-            System.out.println("6. Mostrar todas las ciudades en orden.");
-            System.out.println("7. Mostrar todas las ciudades en preorden.");
-            System.out.println("8. Mostrar todas las ciudades en postorden.");
+            System.out.println("5. Buscar un elemento en el árbol.");
+            System.out.println("6. Mostrar todas los elementos en orden.");
+            System.out.println("7. Mostrar todas los elementos en preorden.");
+            System.out.println("8. Mostrar todas los elemenetos en postorden.");
             System.out.println("9. Calcular la amplitud del árbol.");
             System.out.println("10. Calcular la profundidad del árbol.");
             System.out.println("11. Vaciar el árbol de ciudades.");
             System.out.println("12. Destruir el árbol.");
-            System.out.println("13. Salir.");
+            System.out.println("13. Graficar el árbol.");
+            System.out.println("14. Salir.");
             System.out.print("Seleccione una opción: ");
             opcion = sc.nextInt();
             sc.nextLine();  // Limpiar buffer de entrada
@@ -34,16 +40,16 @@ public class TestArbolBST {
                     crearArbol();
                     break;
                 case 2:
-                    agregarCiudad();
+                    agregarElemento();
                     break;
                 case 3:
-                    eliminarCiudad();
+                    eliminarElemento();
                     break;
                 case 4:
                     balancearArbol();
                     break;
                 case 5:
-                    buscarCiudad();
+                    buscarElemento();
                     break;
                 case 6:
                     mostrarInOrden();
@@ -67,17 +73,36 @@ public class TestArbolBST {
                     destruirArbol();
                     break;
                 case 13:
+                    iniciarInterfazGrafica(listaCiudades);
+                    break;
+                case 14:
                     System.out.println("¡Chao!");
                     break;
                 default:
                     System.out.println("Error. Opción no válida.");
             }
-        } while (opcion != 13);
+        } while (opcion != 14);
 
         sc.close();
+
+
     }
 
     // Métodos estáticos
+    public static void iniciarInterfazGrafica(List<Ciudad> ciudades) {
+        ArbolBST<Ciudad> arbolGrafico = new ArbolBST<>();
+
+        // Insertar cada ciudad de la lista en el árbol gráfico
+        for (Ciudad ciudad : ciudades) {
+            arbolGrafico.insertar(ciudad);
+        }
+
+        // Crear la interfaz gráfica y mostrarla
+        GuiBST<Ciudad> gui = new GuiBST<>(arbolGrafico);
+        gui.setSize(600, 600);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui.setVisible(true);
+    }
 
     public static void crearArbol() {
         if (arbol == null){
@@ -89,7 +114,7 @@ public class TestArbolBST {
 
     }
 
-    public static void agregarCiudad() {
+    public static void agregarElemento() {
         if (arbol != null){
             System.out.print("Ingrese el nombre de la ciudad: ");
             String nombre = sc.nextLine();
@@ -112,9 +137,10 @@ public class TestArbolBST {
             }
 
             // Crear la ciudad con el nombre y la población válidos
-            Ciudad ciudad = new Ciudad(nombre,pais, poblacion);
+            ciudad = new Ciudad(nombre,pais, poblacion);
             arbol.insertar(ciudad);
-            System.out.println("Ciudad agregada al árbol.");
+            listaCiudades.add(ciudad);  // Añadir ciudad a la lista
+            System.out.println("Elemento agregado al árbol.");
 
         } else {
             System.out.println("Error. Debe crear el arbol primero.");
@@ -122,13 +148,13 @@ public class TestArbolBST {
 
     }
 
-    public static void eliminarCiudad() {
+    public static void eliminarElemento() {
         if (arbol != null){
             System.out.print("Ingrese el nombre de la ciudad a eliminar: ");
             String nombre = sc.nextLine();
 
             arbol.eliminar(nombre);
-            System.out.println("Ciudad eliminada del árbol.");
+            System.out.println("Elemento eliminado del árbol.");
         } else {
             System.out.println("Error. Debe crear el arbol primero.");
         }
@@ -147,14 +173,14 @@ public class TestArbolBST {
 
     }
 
-    public static void buscarCiudad() {
+    public static void buscarElemento() {
         if (arbol != null){
             System.out.print("Ingrese el nombre de la ciudad a buscar: ");
             String nombre = sc.nextLine();
 
-            Ciudad ciudad = arbol.buscar(nombre);
+            ciudad = arbol.buscar(nombre);
             if (ciudad != null) {
-                System.out.println("Ciudad encontrada: " + ciudad);
+                System.out.println("Elemento encontrado: " + ciudad);
             } else {
                 System.out.println("Ciudad no encontrada.");
             }
@@ -167,7 +193,7 @@ public class TestArbolBST {
 
     public static void mostrarInOrden() {
         if (arbol != null){
-            System.out.println("Ciudades en orden:");
+            System.out.println("Elementos en orden:");
             arbol.inOrden();
         } else {
             System.out.println("Error. Debe crear el arbol primero.");
@@ -178,7 +204,7 @@ public class TestArbolBST {
 
     public static void mostrarPreOrden() {
         if (arbol != null){
-            System.out.println("Ciudades en preorden:");
+            System.out.println("Elementos en preorden:");
             arbol.preOrden();
         } else {
             System.out.println("Error. Debe crear el arbol primero.");
@@ -189,7 +215,7 @@ public class TestArbolBST {
 
     public static void mostrarPostOrden() {
         if (arbol != null){
-            System.out.println("Ciudades en postorden:");
+            System.out.println("Elementos en postorden:");
             arbol.postOrden();
         } else {
             System.out.println("Error. Debe crear el arbol primero.");
