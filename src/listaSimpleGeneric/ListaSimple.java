@@ -38,7 +38,7 @@ public class ListaSimple <E>{
     }
 
     public boolean agregarEnPosicion (E element, int posicion) {
-        Nodo<E> nuevo = new Nodo<E>(element);
+        Nodo<E> nuevo = new Nodo(element);
 
         // si la lista esta vacia y el usuario quiere agregar en la posicion 1
         if (inicio == null && posicion == 0){
