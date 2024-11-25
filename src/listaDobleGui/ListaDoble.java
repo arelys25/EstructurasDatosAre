@@ -1,8 +1,9 @@
 package listaDobleGui;
 
 public class ListaDoble<E extends Nombrable> {
-    private Nodo<E> inicio, fin;
+    private Nodo<E> inicio, fin, actual;
     private int cantidad = 0;
+
 
     public ListaDoble() {
         inicio = null;
@@ -42,10 +43,99 @@ public class ListaDoble<E extends Nombrable> {
         return false;
     }
 
+    public boolean quitar(String nombre) {
+        Nodo<E> actual = inicio;
+        while (actual != null) {
+            if (actual.getDato().getNombre().equalsIgnoreCase(nombre)) {
+                if (actual == inicio) {
+                    inicio = actual.getSiguiente();
+                    if (inicio != null) {
+                        inicio.setAnterior(null);
+                    }
+                } else if (actual == fin) {
+                    fin = actual.getAnterior();
+                    if (fin != null) {
+                        fin.setSiguiente(null);
+                    }
+                } else {
+                    actual.getAnterior().setSiguiente(actual.getSiguiente());
+                    actual.getSiguiente().setAnterior(actual.getAnterior());
+                }
+                cantidad--;
+                return true;
+            }
+            actual = actual.getSiguiente();
+        }
+        return false;
+    }
+
+    public E siguiente() {
+        if (actual != null && actual.getSiguiente() != null) {
+            actual = actual.getSiguiente();
+            return actual.getDato();
+        }
+        return null; // No hay más nodos
+    }
+
+    // Obtener el nodo anterior
+    public E anterior() {
+        if (actual != null && actual.getAnterior() != null) {
+            actual = actual.getAnterior();
+            return actual.getDato();
+        }
+        return null; // No hay más nodos hacia atrás
+    }
+
+    // Reiniciar el nodo actual al inicio
+    public void resetActual() {
+        actual = inicio;
+    }
+
+    // Configurar el nodo actual al final
+    public void setActualToEnd() {
+        actual = fin;
+    }
+
+
+    // Invertir la lista
+    public void invertir() {
+        Nodo<E> actual = inicio, temp = null;
+        fin = inicio;
+        while (actual != null) {
+            temp = actual.getAnterior();
+            actual.setAnterior(actual.getSiguiente());
+            actual.setSiguiente(temp);
+            actual = actual.getAnterior();
+        }
+        if (temp != null) {
+            inicio = temp.getAnterior();
+        }
+    }
+
+    // Vaciar la lista
+    public void vaciar() {
+        inicio = fin = null;
+        cantidad = 0;
+    }
+
+    // Obtener el primero
+    public E primero() {
+        return (inicio != null) ? inicio.getDato() : null;
+    }
+
+    // Obtener el último
+    public E ultimo() {
+        return (fin != null) ? fin.getDato() : null;
+    }
+
+
+
     // Obtener la cantidad de elementos
     public int cantidad() {
         return cantidad;
     }
+
+
 
     // Agregar un elemento de forma ordenada
     public boolean agregarElemento(E elemento) {

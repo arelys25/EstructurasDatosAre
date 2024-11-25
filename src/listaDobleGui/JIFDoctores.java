@@ -278,6 +278,11 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
             }
 
             resultTxtA.setText("Elemento encontrado:\n"+listaDoble.buscarYMostrar(sNombre));
+            nombreTxt.setText("");
+            especialidadTxt.setText("");
+            departamentoTxt.setText("");
+            horarioTxt.setText("");
+            edadTxt.setText("");
 
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
@@ -286,7 +291,19 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
     }
     private void quitarButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            String nombre = nombreTxt.getText();
+            if (nombre.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Ingrese el nombre del elemento a quitar.");
+            } else if (listaDoble.quitar(nombre)) {
+                resultTxtA.setText("Elemento eliminado con éxito.\n" + listaDoble.imprimirLista());
+                nombreTxt.setText("");
+                especialidadTxt.setText("");
+                departamentoTxt.setText("");
+                horarioTxt.setText("");
+                edadTxt.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Elemento no encontrado.");
+            }
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -295,7 +312,8 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
     }
     private void invertirButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            listaDoble.invertir();
+            resultTxtA.setText("Lista invertida con éxito.\n" + listaDoble.imprimirLista());
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -364,7 +382,8 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
     }
     private void vaciarButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            listaDoble.vaciar();
+            resultTxtA.setText("Lista vaciada con éxito.");
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -383,7 +402,9 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
     }
     private void primeroButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            listaDoble.resetActual();
+            Doctor primero = (Doctor) listaDoble.primero();
+            resultTxtA.setText(primero != null ? primero.toString() : "La lista está vacía.");
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -392,7 +413,12 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
     }
     private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            Doctor siguiente = (Doctor) listaDoble.siguiente();
+            if (siguiente != null) {
+                resultTxtA.setText(siguiente.toString());
+            }else {
+                JOptionPane.showMessageDialog(null, "No hay más elementos.");
+            }
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -411,7 +437,12 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
     }
     private void anteriorButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            Doctor anterior = (Doctor) listaDoble.anterior();
+            if (anterior != null) {
+                resultTxtA.setText(anterior.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay más elementos hacia atrás.");
+            }
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -420,7 +451,9 @@ public class JIFDoctores extends javax.swing.JInternalFrame {
     }
     private void ultimoButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            listaDoble.setActualToEnd();
+            Doctor ultimo = (Doctor) listaDoble.ultimo();
+            resultTxtA.setText(ultimo != null ? ultimo.toString() : "La lista está vacia.");
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 

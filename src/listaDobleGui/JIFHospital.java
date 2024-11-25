@@ -279,6 +279,11 @@ public class JIFHospital extends javax.swing.JInternalFrame {
             }
 
             resultTxtA.setText("Elemento encontrado:\n"+listaDoble.buscarYMostrar(sNombre));
+            nombreTxt.setText("");
+            especialidadTxt.setText("");
+            direccionTxt.setText("");
+            numDoctoresTxt.setText("");
+            numPacientesTxt.setText("");
 
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
@@ -287,6 +292,19 @@ public class JIFHospital extends javax.swing.JInternalFrame {
     }
     private void quitarButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
+            String nombre = nombreTxt.getText();
+            if (nombre.isBlank()) {
+                JOptionPane.showMessageDialog(null, "Ingrese el nombre del elemento a quitar.");
+            } else if (listaDoble.quitar(nombre)) {
+                resultTxtA.setText("Elemento eliminado con éxito.\n" + listaDoble.imprimirLista());
+                nombreTxt.setText("");
+                especialidadTxt.setText("");
+                direccionTxt.setText("");
+                numDoctoresTxt.setText("");
+                numPacientesTxt.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Elemento no encontrado.");
+            }
 
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
@@ -296,7 +314,8 @@ public class JIFHospital extends javax.swing.JInternalFrame {
     }
     private void invertirButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            listaDoble.invertir();
+            resultTxtA.setText("Lista invertida con éxito.\n" + listaDoble.imprimirLista());
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -364,6 +383,8 @@ public class JIFHospital extends javax.swing.JInternalFrame {
     }
     private void vaciarButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
+            listaDoble.vaciar();
+            resultTxtA.setText("Lista vaciada con éxito.");
 
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
@@ -381,18 +402,23 @@ public class JIFHospital extends javax.swing.JInternalFrame {
         }
 
     }
-    private void primeroButtonActionPerformed(java.awt.event.ActionEvent evt){
-        if (listaDoble != null){
-
+    private void primeroButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (listaDoble != null) {
+            listaDoble.resetActual(); // Reiniciar al inicio
+            Hospital primero = (Hospital) listaDoble.primero();
+            resultTxtA.setText(primero != null ? primero.toString() : "La lista está vacía.");
         } else {
-            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
-
+            JOptionPane.showMessageDialog(null, "Debe crear la lista primero.");
         }
-
     }
     private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            Hospital siguiente = (Hospital) listaDoble.siguiente();
+            if (siguiente != null) {
+                resultTxtA.setText(siguiente.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay más elementos.");
+            }
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
@@ -411,21 +437,26 @@ public class JIFHospital extends javax.swing.JInternalFrame {
     }
     private void anteriorButtonActionPerformed(java.awt.event.ActionEvent evt){
         if (listaDoble != null){
-
+            Hospital anterior = (Hospital) listaDoble.anterior();
+            if (anterior != null) {
+                resultTxtA.setText(anterior.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay más elementos hacia atrás.");
+            }
         } else {
             JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
 
         }
 
     }
-    private void ultimoButtonActionPerformed(java.awt.event.ActionEvent evt){
-        if (listaDoble != null){
-
+    private void ultimoButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (listaDoble != null) {
+            listaDoble.setActualToEnd(); // Ir al final
+            Hospital ultimo = (Hospital) listaDoble.ultimo();
+            resultTxtA.setText(ultimo != null ? ultimo.toString() : "La lista está vacia.");
         } else {
-            JOptionPane.showMessageDialog(null,"Debe crear la lista doble primero.");
-
+            JOptionPane.showMessageDialog(null, "Debe crear la lista primero.");
         }
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
